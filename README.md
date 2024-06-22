@@ -181,7 +181,7 @@ I designed the site mock-ups using [Balsamiq wireframes](https://balsamiq.com/).
 
 ### **Languages** ###
 
-- [Python3](https://www.python.org/)
+- [JavaScript]([(https://www.javascript.com)])
   - Used to create the main application functionality
 - [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
   - Used as the main markup language for the website content.
