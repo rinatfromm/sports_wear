@@ -2,11 +2,13 @@
 
 ![Sportswear Online logo](media/sportswear_online_logo.png)
 
-Sportswear Online is a (fictitious) online retailer providing sports clothing, footwear, equipment and accessories for sale. The idea for this final milestone project is to provide the visitor with a fully functioning, interactive e-commerce website providing easy, familiar navigation and allowing the simulated purchase of items from the store.
+Sportswear Online is a (fictitious) online retailer providing sports clothing, footwear for sale. The idea for this final milestone project is to provide the visitor with a fully functioning, interactive e-commerce website providing easy, familiar navigation and allowing the simulated purchase of items from the store.
 
 The site functionality will allow a common shopping experience for the visitor by providing a shopping cart to save chosen items, a secure checkout / payment facility and order confirmation using both on-screen messages and friendly, personalised emailed message.
 
 ***Please note: This site is purely for educational purposes only. The credit card payment facility is real but remains in test mode and so no payments will be taken. Please do not enter real credit card details when using this site.***
+
+
 
 ![Sportswear Online screenshot](readme_content/am-i-responsive-sm.png)
 
@@ -76,12 +78,12 @@ The site functionality will allow a common shopping experience for the visitor b
 
 ### **Project Goals** ###
 
-The **goal** of this project is to build a fully functioning e-commerce website, similar in design to popular UK high street retailers, allowing the user to browse a range of sports related products. 
+The **goal** of this project is to build a fully functioning e-commerce website, similar in design to popular Germany shops, allowing the user to browse a range of sports related products. 
 
 
 The **features** of the website will be:
 
-- Search for products by type, name or category.
+- Search for products by type, name, category, size.
 - Expanded menus displaying sub-categories of products to further filter the available products.
 - Select items to purchase by size and quantity, placed in a shopping cart.
 - A checkout page where the items can be paid for with a secure, integrated credit card payment facility.
