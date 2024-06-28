@@ -1,0 +1,16 @@
+.navBar {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .activeLink {
+    text-decoration: underline;
+    color: blue;
+  }

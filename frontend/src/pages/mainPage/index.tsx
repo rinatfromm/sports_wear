@@ -2,7 +2,7 @@
 const MainPage: React.FC = () => {
     return (
         <div>
-            <h1>Main Page Content</h1>
+            Main Page
         </div>
     );
 };
