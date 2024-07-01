@@ -1,0 +1,10 @@
+.logo {
+    width: 70px;
+    height: 70px;
+    color: #000000;
+}
+
+.logo:hover {
+    color: rgb(70, 130, 180);
+    transform: scale(1.1);
+}
