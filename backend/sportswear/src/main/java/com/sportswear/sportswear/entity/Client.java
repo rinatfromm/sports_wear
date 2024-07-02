@@ -19,12 +19,17 @@ import static jakarta.persistence.CascadeType.REFRESH;
 @Table(name = "clients")
 public class Client {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
     @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
     @JoinColumn(name = "personal_info_id", referencedColumnName = "id")
     private PersonalInfo personalInfo;
+
+    @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
+    @JoinColumn(name = "baskets_id", referencedColumnName = "id")
+    private Basket basket;
 
     @Column(name = "active")
     private Boolean active;
@@ -35,5 +40,5 @@ public class Client {
 
     @UpdateTimestamp
     @Column(name = "updated")
-    private  LocalDateTime updated;
+    private LocalDateTime updated;
 }

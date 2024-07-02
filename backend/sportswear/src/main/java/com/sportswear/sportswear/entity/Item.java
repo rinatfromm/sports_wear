@@ -1,9 +1,6 @@
 package com.sportswear.sportswear.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +18,7 @@ import java.util.UUID;
 @Table(name = "items")
 public class Item {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
@@ -51,5 +49,5 @@ public class Item {
 
     @UpdateTimestamp
     @Column(name = "updated")
-    private  LocalDateTime updated;
+    private LocalDateTime updated;
 }

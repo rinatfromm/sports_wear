@@ -16,10 +16,14 @@ import static jakarta.persistence.CascadeType.REFRESH;
 @Table(name = "baskets")
 public class Basket {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
     @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
-    @JoinColumn(name = "items_list_id", referencedColumnName = "id")
-    private ItemList itemList;
+    @JoinColumn(name = "items_id", referencedColumnName = "id")
+    private Item itemId;
+
+    @Column(name = "quantity")
+    private Integer quantity;
 }

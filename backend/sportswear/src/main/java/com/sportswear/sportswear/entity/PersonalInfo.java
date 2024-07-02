@@ -10,9 +10,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.MERGE;
-import static jakarta.persistence.CascadeType.REFRESH;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -20,12 +17,9 @@ import static jakarta.persistence.CascadeType.REFRESH;
 @Table(name = "personal_info")
 public class PersonalInfo {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
-
-    @ManyToOne(cascade = {MERGE, REFRESH})
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
-    private Client client;
 
     @Column(name = "name", length = 32, nullable = false)
     private String name;

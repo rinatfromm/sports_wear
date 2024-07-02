@@ -20,6 +20,7 @@ import static jakarta.persistence.CascadeType.REFRESH;
 @Table(name = "delivery_address")
 public class DeliveryAddress {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
