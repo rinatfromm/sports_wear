@@ -1,5 +1,5 @@
 import { FC, Fragment, } from "react";
-import styles from '../styles/Layout.module.css'
+import styles from './Layout.module.css'
 import Footer from "../../widgets/footer";
 import Header from "../../widgets/header";
 import { Outlet } from "react-router-dom";

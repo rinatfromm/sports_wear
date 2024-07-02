@@ -5,4 +5,5 @@ export const navigationItems: NavItem[] = [
   { to: "/categories", text: "Categories" },
   { to: "/products", text: "Products" },
   { to: "/sales", text: "Sales" },
+  { to: "/aboutUs", text: "About Us" },
 ];
