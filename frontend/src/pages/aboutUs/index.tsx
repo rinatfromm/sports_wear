@@ -1,4 +1,4 @@
-import styles from '../../app/styles/AboutUs.module.css'
+import styles from './AboutUs.module.css'
 
 
 

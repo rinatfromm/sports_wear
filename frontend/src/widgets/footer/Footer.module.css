@@ -1,0 +1,23 @@
+.footer {
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    background-color: hsl(0, 4%, 82%);
+}
+
+.footerLinkContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.footerTeamInfo p {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.footerLink {
+    color: #0077B5;
+    background-color: white;
+    width: 16px;
+    height: 16px;
+}

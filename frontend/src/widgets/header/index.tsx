@@ -1,4 +1,4 @@
-import styles from '../../app/styles/Header.module.css'
+import styles from './Header.module.css'
 import LogoHeader from './logo'
 import NavBar from './navbar'
 

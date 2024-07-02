@@ -1,5 +1,5 @@
 import { CgAdidas } from "react-icons/cg";
-import styles from '../../../app/styles/LogoHeader.module.css'
+import styles from './LogoHeader.module.css'
 import { NavLink } from "react-router-dom";
 
 function LogoHeader() {
