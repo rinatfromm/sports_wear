@@ -2,11 +2,18 @@ package com.sportswear.sportswear.service.implementation;
 
 import com.sportswear.sportswear.converter.ClientDTOConverter;
 import com.sportswear.sportswear.dto.ClientDTO;
+import com.sportswear.sportswear.entity.Client;
 import com.sportswear.sportswear.repository.ClientRepository;
 import com.sportswear.sportswear.service.interfaces.ClientService;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -16,18 +23,32 @@ public class ClientServiceImpl implements ClientService {
     private final ClientDTOConverter clientDTOConverter;
 
     @Override
-    public void createClient(ClientDTO clientDTO) {
+    @Transactional
+    public void createClient(@RequestBody @Valid ClientDTO clientDTO) {
         clientRepository.save(clientDTOConverter.convertDTOToClient(clientDTO));
         log.info("Create bank info.");
     }
 
     @Override
-    public ClientDTO getClient() {
-        return null;
+    @Transactional
+    public ClientDTO getClientById(UUID uuid) {
+        log.info("Get client by id.");
+        return clientDTOConverter.convertClientToDTO(clientRepository.findAllById(uuid));
     }
 
     @Override
-    public void updateClient(ClientDTO clientDTO) {
+    @Transactional
+    public List<ClientDTO> getAllClients() {
+        List<Client> clients = clientRepository.findAll();
+        log.info("Get all clients.");
+        return clientDTOConverter.convertClientsToDTOs(clients);
+    }
 
+    @Override
+    @Transactional
+    public void updateClientById(@RequestBody @Valid ClientDTO clientDTO) {
+        Client client = clientDTOConverter.convertDTOToClient(clientDTO);
+        clientRepository.save(client);
+        log.info("Update client by id.");
     }
 }

@@ -2,8 +2,12 @@ package com.sportswear.sportswear.service.interfaces;
 
 import com.sportswear.sportswear.dto.ClientDTO;
 
+import java.util.List;
+import java.util.UUID;
+
 public interface ClientService {
     void createClient(ClientDTO clientDTO);
-    ClientDTO getClient();
-    void updateClient(ClientDTO clientDTO);
+    ClientDTO getClientById(UUID uuid);
+    List<ClientDTO> getAllClients();
+    void updateClientById(ClientDTO clientDTO);
 }

@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class ClientDTOConverter {
@@ -17,5 +20,13 @@ public class ClientDTOConverter {
 
     public ClientDTO convertClientToDTO(Client client) {
         return modelMapper.map(client, ClientDTO.class);
+    }
+
+    public List<ClientDTO> convertClientsToDTOs(List<Client> clients) {
+        List<ClientDTO> clientDTOs = new LinkedList<>();
+        for (Client client : clients) {
+            clientDTOs.add(modelMapper.map(client, ClientDTO.class));
+        }
+        return clientDTOs;
     }
 }

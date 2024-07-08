@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/client")
@@ -18,13 +21,18 @@ public class ClientController {
         clientService.createClient(createDTO);
     }
 
-    @GetMapping(value = "/get")
-    public ResponseEntity<ClientDTO> getClient() {
-        return ResponseEntity.ok().body(clientService.getClient());
+    @GetMapping(value = "/get/by/id/{uuid}")
+    public ResponseEntity<ClientDTO> getClientById(@PathVariable UUID uuid) {
+        return ResponseEntity.ok().body(clientService.getClientById(uuid));
+    }
+
+    @GetMapping(value = "/get/all")
+    public ResponseEntity<List<ClientDTO>> getAllClients() {
+        return ResponseEntity.ok().body(clientService.getAllClients());
     }
 
     @PutMapping(value = "/update")
-    public void updateClient(@RequestBody @Valid ClientDTO updateDTO) {
-        clientService.updateClient(updateDTO);
+    public void updateClientById(@RequestBody @Valid ClientDTO updateDTO) {
+        clientService.updateClientById(updateDTO);
     }
 }
