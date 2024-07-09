@@ -13,11 +13,13 @@ const ProductList: React.FC = () => {
         fetchProducts();
     }, [fetchProducts]);
 
+    const limitedProducts = productsAll.slice(0, 4);
+
     return (
         <div>
             <h2>Products List</h2>
             <ul className={styles.conteiner}>
-                {productsAll.map(product => (
+                {limitedProducts.map(product => (
                     <ProductItem key={product.id} product={product} />
                 ))}
             </ul>

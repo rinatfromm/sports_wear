@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import axiosInstance from '../../../shared/api/axiosInstance';
-import { Product } from '../model/productTypes';
+import { Product } from './productTypes';
 
 interface ProductState {
     productsAll: Product[];

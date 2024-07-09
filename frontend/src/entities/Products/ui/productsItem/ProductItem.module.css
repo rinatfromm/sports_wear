@@ -5,6 +5,7 @@
     padding: 16px;
     margin-bottom: 16px;
     width: 300px;
+    list-style-type: none; 
 }
 
 .title {

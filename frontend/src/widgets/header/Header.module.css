@@ -5,3 +5,9 @@
     align-items: center;
     background-color: rgb(240, 240, 240);
 }
+
+.navbar {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
