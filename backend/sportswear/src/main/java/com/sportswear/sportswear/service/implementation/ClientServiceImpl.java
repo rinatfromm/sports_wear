@@ -26,14 +26,14 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public void createClient(@RequestBody @Valid ClientDTO clientDTO) {
         clientRepository.save(clientDTOConverter.convertDTOToClient(clientDTO));
-        log.info("Create bank info.");
+        log.info("Create client.");
     }
 
     @Override
     @Transactional
-    public ClientDTO getClientById(UUID uuid) {
+    public ClientDTO getClientById(UUID id) {
         log.info("Get client by id.");
-        return clientDTOConverter.convertClientToDTO(clientRepository.findAllById(uuid));
+        return clientDTOConverter.convertClientToDTO(clientRepository.findAllById(id));
     }
 
     @Override

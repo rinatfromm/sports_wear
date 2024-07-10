@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface ClientService {
     void createClient(ClientDTO clientDTO);
-    ClientDTO getClientById(UUID uuid);
+    ClientDTO getClientById(UUID id);
     List<ClientDTO> getAllClients();
     void updateClientById(ClientDTO clientDTO);
 }
