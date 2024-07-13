@@ -5,9 +5,8 @@ import { NavLink } from "react-router-dom";
 function LogoHeader() {
     return (
         <NavLink to={'/'} className={styles.navLink}>
-                <CgAdidas className={styles.logo} />
+            <CgAdidas className={styles.logo} />
         </NavLink>
-
     )
 }
 

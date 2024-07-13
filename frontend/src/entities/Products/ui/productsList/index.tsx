@@ -12,7 +12,7 @@ const ProductList: React.FC = () => {
     useEffect(() => {
         fetchProducts();
     }, [fetchProducts]);
-
+   
     const limitedProducts = productsAll.slice(0, 4);
 
     return (

@@ -17,7 +17,7 @@ const useProductStore = create<ProductState>((set) => ({
     fetchProducts: async () => {
         set({ loading: true, error: null });
         try {
-            const response = await axiosInstance.get<Product[]>('/products');
+            const response = await axiosInstance.get<Product[]>('/get/all');
             set({ productsAll: response.data, loading: false });
         } catch (error) {
             set({ error: (error as Error).message, loading: false });
