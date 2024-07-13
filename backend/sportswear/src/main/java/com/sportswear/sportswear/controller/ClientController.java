@@ -32,7 +32,7 @@ public class ClientController {
     }
 
     @PutMapping(value = "/update")
-    public void updateClientById(@RequestBody @Valid ClientDTO updateDTO) {
-        clientService.updateClientById(updateDTO);
+    public void updateClientById(@RequestBody @Valid ClientDTO clientDTO) {
+        clientService.updateClientById(clientDTO);
     }
 }
