@@ -6,12 +6,14 @@ import NavBar from '../header/navbar';
 function HeaderOther() {
     return (
         <header className={styles.header} >
-            <div className={styles.navbar}>
-                <LogoHeader />
-                <NavBar />
-            </div>
-            <div>
-                <BasketLogo />
+            <div className={styles.headerContainer}>
+                <div className={styles.navbar}>
+                    <LogoHeader />
+                    <NavBar />
+                </div>
+                <div>
+                    <BasketLogo />
+                </div>
             </div>
         </header>
     );

@@ -9,9 +9,9 @@ const Header: React.FC = () => {
 
     const handleScroll = () => {
         if (window.scrollY > 50) {
-            setBackground('#080F21'); 
+            setBackground('#080F21');
         } else {
-            setBackground('transparent'); 
+            setBackground('transparent');
         }
     };
 
@@ -24,12 +24,14 @@ const Header: React.FC = () => {
 
     return (
         <header className={styles.header} style={{ backgroundColor: background }}>
-            <div className={styles.navbar}>
-                <LogoHeader />
-                <NavBar />
-            </div>
-            <div>
-                <BasketLogo />
+            <div className={styles.headerContainer}>
+                <div className={styles.navbar}>
+                    <LogoHeader />
+                    <NavBar />
+                </div>
+                <div>
+                    <BasketLogo />
+                </div>
             </div>
         </header>
     );
