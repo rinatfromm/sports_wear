@@ -16,7 +16,7 @@ const ProductList: React.FC = () => {
     const limitedProducts = productsAll.slice(0, 4);
 
     return (
-        <div>
+        <div className={styles.productsList_container}>
             <h2>Products List</h2>
             <ul className={styles.conteiner}>
                 {limitedProducts.map(product => (

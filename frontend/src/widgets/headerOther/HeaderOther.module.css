@@ -1,21 +1,19 @@
 .header {
-    width: 1400px; 
-    padding: 20px; 
+    width: 1400px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #080F21;
-    position: fixed;
-    z-index: 1;
+    position: sticky;
     transition: background-color 0.3s ease;
     top: 0;
 }
 
 
-  
-  .navbar {
+
+.navbar {
     width: 90%;
     display: flex;
     justify-content: space-between;
-  }
-  
+}
