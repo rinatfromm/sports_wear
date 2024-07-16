@@ -3,6 +3,7 @@ import BasketLogo from './BasketLogo';
 import styles from './Header.module.css';
 import LogoHeader from './logo';
 import NavBar from './navbar';
+import Button from '../../shared/ui/button';
 
 const Header: React.FC = () => {
     const [background, setBackground] = useState('transparent');
@@ -29,8 +30,14 @@ const Header: React.FC = () => {
                     <LogoHeader />
                     <NavBar />
                 </div>
-                <div>
-                    <BasketLogo />
+                <div className={styles.btnsContainer}>
+                    <div className={styles.authBtns}>
+                        <Button className={'btns'} title={'Log in'} />
+                        <Button className={'btns'} title={'Sign up'} />
+                    </div>
+                    <div>
+                        <BasketLogo />
+                    </div>
                 </div>
             </div>
         </header>

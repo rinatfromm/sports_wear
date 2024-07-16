@@ -2,6 +2,7 @@ import BasketLogo from '../header/BasketLogo';
 import styles from './HeaderOther.module.css';
 import LogoHeader from '../header/logo';
 import NavBar from '../header/navbar';
+import Button from '../../shared/ui/button';
 
 function HeaderOther() {
     return (
@@ -11,8 +12,14 @@ function HeaderOther() {
                     <LogoHeader />
                     <NavBar />
                 </div>
-                <div>
-                    <BasketLogo />
+                <div className={styles.btnsContainer}>
+                    <div className={styles.authBtns}>
+                        <Button className={'btns'} title={'Log in'} />
+                        <Button className={'btns'} title={'Sign up'} />
+                    </div>
+                    <div>
+                        <BasketLogo />
+                    </div>
                 </div>
             </div>
         </header>
