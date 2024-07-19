@@ -13,9 +13,13 @@
   color: #FFFFFF;
 }
 
+.navItem:hover {
+  transform: scale(1.1);
+}
+
 .activeLink {
   text-decoration: none;
-  color:  #7F56D9;
+  color: #7F56D9;
 }
 
 .navItem:last-child {

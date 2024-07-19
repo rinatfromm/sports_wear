@@ -57,3 +57,9 @@
 .image_three {
     transform: translate(-60%, 26%);
 }
+
+.main_banner_btns {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
