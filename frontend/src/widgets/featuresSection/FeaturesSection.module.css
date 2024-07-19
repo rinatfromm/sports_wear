@@ -1,5 +1,10 @@
+.description_block {
+    margin-bottom: 64px;
+}
+
 .features {
     color: #AA8CEF;
+    font-size: 16px;
 }
 
 .highlight {
@@ -8,8 +13,23 @@
 
 .features_description {
     color: #475467;
+    font-size: 20px;
 }
 
 .features_h3 {
     color: #101828;
+    font-size: 36px;
 }
+
+.feature_card {
+    display: flex;
+}
+
+.feature_items {
+    display: flex;
+    gap: 64px;
+}
+
+/* .feature_card_container{
+    display: block;
+} */
