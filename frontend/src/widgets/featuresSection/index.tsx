@@ -16,13 +16,13 @@ function FeaturesSection() {
                 <div className={styles.feature_card_container}>
                     {featuresSectionCards.map((card, index) => (
                         <div key={index} className={styles.feature_card}>
-                            <div>
+                            <div className={styles.feature_card_icons}>
                                 <card.icon />
                             </div>
-                            <div>
-                                <h4>{card.title}</h4>
-                                <p>{card.description}</p>
-                                <a href={card.link}>Learn More <img src={arrowRight} alt='arrow_right' /></a>
+                            <div className={styles.feature_card_content}>
+                                <h4 className={styles.feature_title_card}>{card.title}</h4>
+                                <p className={styles.features_description_card}>{card.description}</p>
+                                <a href={card.link} className={styles.feature_link}>Learn More <img src={arrowRight} alt='arrow_right' /></a>
                             </div>
                         </div>
                     ))}

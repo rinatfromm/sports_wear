@@ -1,3 +1,9 @@
+.features_section{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+
 .description_block {
     margin-bottom: 64px;
 }
@@ -5,6 +11,7 @@
 .features {
     color: #AA8CEF;
     font-size: 16px;
+    margin-bottom: 12px;
 }
 
 .highlight {
@@ -14,22 +21,47 @@
 .features_description {
     color: #475467;
     font-size: 20px;
+    max-width: 670px;
 }
 
 .features_h3 {
     color: #101828;
     font-size: 36px;
+    margin-bottom: 20px;
 }
 
 .feature_card {
     display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
 }
 
 .feature_items {
     display: flex;
+    justify-content: space-between;
     gap: 64px;
 }
 
-/* .feature_card_container{
-    display: block;
-} */
+.feature_link {
+    display: flex;
+    gap: 8px;
+    text-decoration: none;
+    color: #AA8CEF;
+}
+
+.feature_card_container{
+    padding-top: 32px;
+}
+.feature_title_card{
+    margin-bottom: 8px;
+}
+.features_description_card{
+    margin-bottom: 20px;
+}
+.feature_card_content{
+    max-width: 440px;
+}
+.feature_card_icons{
+    position: relative;
+    top: -20px;
+}
