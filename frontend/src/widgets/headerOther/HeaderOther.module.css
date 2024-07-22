@@ -21,7 +21,6 @@
 }
 
 .navbar {
-    width: 40%;
     display: flex;
     justify-content: space-between;
 }
@@ -29,5 +28,5 @@
 .btnsContainer {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 32px;
 }

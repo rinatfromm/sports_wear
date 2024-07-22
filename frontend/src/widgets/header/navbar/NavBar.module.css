@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 32px;
   font-size: 20px;
 }
 
@@ -22,6 +22,3 @@
   color: #7F56D9;
 }
 
-.navItem:last-child {
-  margin-left: 30px;
-}
