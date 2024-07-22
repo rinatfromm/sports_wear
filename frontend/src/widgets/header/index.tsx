@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BasketLogo from './BasketLogo';
 import styles from './Header.module.css';
-import LogoHeader from './logo';
+
 import NavBar from './navbar';
 import Button from '../../shared/ui/button';
 
@@ -27,17 +27,12 @@ const Header: React.FC = () => {
         <header className={styles.header} style={{ backgroundColor: background }}>
             <div className={styles.headerContainer}>
                 <div className={styles.navbar}>
-                    <LogoHeader />
+             
                     <NavBar />
                 </div>
                 <div className={styles.btnsContainer}>
-                    <div className={styles.authBtns}>
-                        <Button className={'btns'} title={'Log in'} />
-                        <Button className={'btns'} title={'Sign up'} />
-                    </div>
-                    <div>
-                        <BasketLogo />
-                    </div>
+                    <BasketLogo />
+                    <Button className={'btns'} title={'Log in'} />
                 </div>
             </div>
         </header>

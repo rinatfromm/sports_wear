@@ -1,0 +1,11 @@
+.dropdownToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    background: none;
+    cursor: pointer;
+    border: none;
+    font-size: 20px;
+    gap: 8px;
+}

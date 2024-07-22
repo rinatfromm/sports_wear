@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 32px;
   font-size: 20px;
 }
 
@@ -13,11 +13,12 @@
   color: #FFFFFF;
 }
 
-.activeLink {
-  text-decoration: none;
-  color:  #7F56D9;
+.navItem:hover {
+  transform: scale(1.1);
 }
 
-.navItem:last-child {
-  margin-left: 30px;
+.activeLink {
+  text-decoration: none;
+  color: #7F56D9;
 }
+

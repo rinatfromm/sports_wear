@@ -1,12 +1,11 @@
 .header {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1440px;
     padding: 20px;
     background-color: #080F21;
     position: sticky;
     z-index: 1;
     transition: background-color 0.3s ease;
-    top: 0;
 }
 
 
@@ -22,7 +21,6 @@
 }
 
 .navbar {
-    width: 40%;
     display: flex;
     justify-content: space-between;
 }
@@ -30,5 +28,5 @@
 .btnsContainer {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 32px;
 }

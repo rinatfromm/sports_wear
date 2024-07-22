@@ -1,11 +1,11 @@
-import { CgAdidas } from "react-icons/cg";
+import logo from '../../../shared/icons/logo.svg'
 import styles from './LogoHeader.module.css'
 import { NavLink } from "react-router-dom";
 
 function LogoHeader() {
     return (
         <NavLink to={'/'} className={styles.navLink}>
-            <CgAdidas className={styles.logo} />
+           <img src={logo} alt="Logo" />
         </NavLink>
     )
 }

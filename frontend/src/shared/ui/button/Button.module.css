@@ -1,4 +1,4 @@
-.btns{
+.btns {
     width: 95px;
     height: 44px;
     border-radius: 8px;
@@ -9,5 +9,28 @@
 }
 
 .btns:hover {
+    background-color: #7F56D9;
+}
+
+.btn_guest {
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #344054;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn_sign_up {
+    padding: 16px 28px;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.btn_sign_up:hover {
     background-color: #7F56D9;
 }
