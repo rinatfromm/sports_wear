@@ -5,14 +5,14 @@
     cursor: pointer;
     color: white;
     border: none;
-    background-color: transparent;
-}
-
-.btns:hover {
     background-color: #7F56D9;
 }
 
-.btn_guest {
+.btns:hover {
+    background-color: #603CB0;
+}
+
+.whatch_our_promo {
     padding: 16px 28px;
     display: flex;
     align-items: center;
@@ -21,16 +21,28 @@
     cursor: pointer;
     border-radius: 8px;
 }
-
-.btn_sign_up {
+.whatch_our_promo:hover {
+    color: #603CB0;
+}
+.go_to_shopping {
     padding: 16px 28px;
     color: #FFFFFF;
     cursor: pointer;
     border: none;
-    background-color: transparent;
+    background-color: #7F56D9;
     border-radius: 8px;
 }
+.go_to_shopping:hover {
+    background-color: #603CB0;
+}
 
-.btn_sign_up:hover {
+
+.sendButton {
+    width: 95px;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    border: none;
     background-color: #7F56D9;
 }

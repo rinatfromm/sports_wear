@@ -4,7 +4,11 @@
     color: #FFFFFF;
 }
 
+.navLink {
+    margin-right: 32px;
+}
+
 .logo:hover {
-    color:  #7F56D9;
+    color: #7F56D9;
     transform: scale(1.1);
 }

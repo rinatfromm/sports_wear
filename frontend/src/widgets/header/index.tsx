@@ -4,6 +4,7 @@ import styles from './Header.module.css';
 
 import NavBar from './navbar';
 import Button from '../../shared/ui/button';
+import LogoHeader from './logo';
 
 const Header: React.FC = () => {
     const [background, setBackground] = useState('transparent');
@@ -27,8 +28,13 @@ const Header: React.FC = () => {
         <header className={styles.header} style={{ backgroundColor: background }}>
             <div className={styles.headerContainer}>
                 <div className={styles.navbar}>
-             
-                    <NavBar />
+                    <LogoHeader />
+                    <NavBar
+                        containerClass="navBar"
+                        linkClass="link"
+                        navItemClass="navItem"
+                        activeLinkClass="activeLink"
+                    />
                 </div>
                 <div className={styles.btnsContainer}>
                     <BasketLogo />

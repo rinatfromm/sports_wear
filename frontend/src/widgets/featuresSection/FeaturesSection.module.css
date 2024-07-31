@@ -22,6 +22,8 @@
     color: #475467;
     font-size: 20px;
     max-width: 670px;
+    line-height: 30px;
+    font-family: "Inter";
 }
 
 .features_h3 {
@@ -64,4 +66,12 @@
 .feature_card_icons{
     position: relative;
     top: -20px;
+}
+.boxing_container{
+    position: relative;
+}
+.arrow{
+    position: absolute;
+    top: -105px;
+    left: 140px;
 }

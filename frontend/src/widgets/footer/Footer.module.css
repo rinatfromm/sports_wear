@@ -1,13 +1,14 @@
 .footer {
-    padding: 30px 50px;
-    background-color: hsl(0, 4%, 82%);
+    padding: 30px 80px;
+    background-color: #FFFFFF;
+    margin: 0 auto;
 }
 
 .footerContainer {
+    margin-bottom: 64px;
     max-width: 1280px;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
 }
 
 .footerLinkContainer {
@@ -25,4 +26,50 @@
     background-color: white;
     width: 16px;
     height: 16px;
+}
+
+.divider {
+    margin-bottom: 32px;
+    width: 100%;
+    height: 2px;
+    background-color: #F4EBFF;
+}
+
+.infoLinkFooter {
+    margin: 0px 64px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoLinkFooter p {
+    color: #344054;
+}
+
+.linkStyle {
+    font-size: 16px;
+    color: #344054;
+    text-decoration: none;
+}
+
+.linkContainer {
+    display: flex;
+    gap: 16px;
+}
+
+.inputEmail {
+    display: flex;
+    gap: 16px;
+}
+
+.stayInTouch {
+    margin-bottom: 16px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #344054;
+}
+
+.emailFooter {
+    padding: 7px 40px 7px 8px;
+    border: 1px solid #F3F3F3;
+    border-radius: 4px;
 }
