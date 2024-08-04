@@ -8,17 +8,38 @@
   font-size: 20px;
 }
 
+.navBarFooter {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  font-size: 20px;
+}
+
+
 .link {
   text-decoration: none;
   color: #FFFFFF;
 }
 
-.navItem:hover {
-  transform: scale(1.1);
+.link:hover {
+  color: #603CB0;
 }
+
+.linkFooter {
+  text-decoration: none;
+  color: #344054;
+}
+
 
 .activeLink {
   text-decoration: none;
   color: #7F56D9;
 }
 
+.activeLinkFooter {
+  text-decoration: none;
+  color: #7F56D9;
+}

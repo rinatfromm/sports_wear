@@ -64,3 +64,9 @@
     justify-content: center;
     gap: 12px;
 }
+
+
+
+.icon_whatch_our_promo:hover {
+    filter: invert(26%) sepia(61%) saturate(467%) hue-rotate(242deg) brightness(96%) contrast(94%);
+}

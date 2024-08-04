@@ -2,6 +2,7 @@ import styles from './FeaturesSection.module.css'
 import boxing from '../../shared/ assets/  images/box.svg'
 import featuresSectionCards from './featuresSectionCards'
 import arrowRight from '../../shared/icons/arrow-right.svg'
+import arrow from '../../shared/ assets/  images/ arrow.svg'
 
 
 function FeaturesSection() {
@@ -27,7 +28,10 @@ function FeaturesSection() {
                         </div>
                     ))}
                 </div>
-                <img src={boxing} alt="Boxing" />
+                <div className={styles.boxing_container}>
+                    <img src={arrow} alt="Arrow" className={styles.arrow}/>
+                    <img src={boxing} alt="Boxing" />
+                </div>
             </div>
         </section>
     )

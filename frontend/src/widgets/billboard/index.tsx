@@ -24,12 +24,11 @@ function Billboard() {
                     <img src={tego} alt="Tego" className={styles.image_three} />
                 </div>
                 <div className={styles.main_banner_btns}>
-                    <Button className={"btn_guest"} title={'Continue as guest'}>
-                        <img src={icon} alt="icon" />
+                    <Button className={"whatch_our_promo"} title={'Whatch our promo'}>
+                        <img src={icon} alt="icon" className={styles.icon_whatch_our_promo} />
                     </Button>
-                    <Button className={"btn_sign_up"} title={'Sign up'}></Button>
+                    <Button className={"go_to_shopping"} title={'Go to shopping'}></Button>
                 </div>
-
             </div>
         </section>
     )

@@ -37,7 +37,7 @@ public class ImageController {
     @GetMapping(value = "/get/test")
     public ResponseEntity<Resource> getImageTest() {
         String imageName = "nike.jpg";
-        Resource file = new FileSystemResource("src/main/resources/images/" + imageName);
+        Resource file = new FileSystemResource("/Users/rinatfromm/Desktop/sports_wear/sports_wear/backend/sportswear/src/main/resources/images/" + imageName);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(file);
