@@ -4,7 +4,6 @@ import com.sportswear.sportswear.dto.ImageDTO;
 import com.sportswear.sportswear.entity.Image;
 import com.sportswear.sportswear.service.interfaces.ImageService;
 import jakarta.validation.Valid;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
@@ -36,7 +35,7 @@ public class ImageController {
     }
 
     @GetMapping(value = "/get/test")
-    public ResponseEntity<Resource> getImageTest() throws IOException { // @PathVariable String imageName
+    public ResponseEntity<Resource> getImageTest() {
         String imageName = "nike.jpg";
         Resource file = new FileSystemResource("src/main/resources/images/" + imageName);
         return ResponseEntity.ok()

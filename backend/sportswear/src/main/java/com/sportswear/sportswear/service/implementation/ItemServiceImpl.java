@@ -55,7 +55,6 @@ public class ItemServiceImpl implements ItemService {
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(() -> new RuntimeException("Item not found!"));
         Image image = imageDTOConverter.convertDTOToImage(imageDTO);
-        //image.setImageName();
         image = imageRepository.save(image);
         return imageDTOConverter.convertImageToDTO(image);
     }
