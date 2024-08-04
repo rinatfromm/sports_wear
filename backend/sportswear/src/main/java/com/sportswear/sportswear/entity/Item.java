@@ -43,6 +43,9 @@ public class Item {
     @Column(name = "in_stock", length = 32, nullable = false)
     private Integer inStock;
 
+//    @OneToMany(mappedBy = "item_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Image> images;
+
     @CreationTimestamp
     @Column(name = "created", updatable = false)
     private LocalDateTime created;

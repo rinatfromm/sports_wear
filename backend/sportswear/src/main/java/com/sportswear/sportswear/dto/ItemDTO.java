@@ -1,5 +1,6 @@
 package com.sportswear.sportswear.dto;
 
+import com.sportswear.sportswear.entity.Image;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -7,6 +8,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -40,6 +42,8 @@ public class ItemDTO {
     @NotNull(message = "In stock should not be null!")
     @Min(value = 0, message = "In stock should be greater than 0!")
     private Integer inStock;
+
+    private List<Image> images;
 
     private LocalDateTime created;
 

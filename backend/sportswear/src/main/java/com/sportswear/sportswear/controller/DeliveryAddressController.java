@@ -20,7 +20,7 @@ public class DeliveryAddressController {
         deliveryAddressService.createDeliveryAddress(deliveryAddressDTO);
     }
 
-    @GetMapping(value = "/get/by/id/{uuid}")
+    @GetMapping(value = "/get/by/id/{id}")
     public ResponseEntity<DeliveryAddressDTO> getDeliveryAddressById(@PathVariable UUID id) {
         return ResponseEntity.ok().body(deliveryAddressService.getDeliveryAddressById(id));
     }

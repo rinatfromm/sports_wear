@@ -21,9 +21,9 @@ public class ClientController {
         clientService.createClient(createDTO);
     }
 
-    @GetMapping(value = "/get/by/id/{uuid}")
-    public ResponseEntity<ClientDTO> getClientById(@PathVariable UUID uuid) {
-        return ResponseEntity.ok().body(clientService.getClientById(uuid));
+    @GetMapping(value = "/get/by/id/{id}")
+    public ResponseEntity<ClientDTO> getClientById(@PathVariable UUID id) {
+        return ResponseEntity.ok().body(clientService.getClientById(id));
     }
 
     @GetMapping(value = "/get/all")

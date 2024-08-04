@@ -20,7 +20,7 @@ public class PersonalInfoController {
         personalInfoService.createPersonalInfo(personalInfoDTO);
     }
 
-    @GetMapping(value = "/get/by/id/{uuid}")
+    @GetMapping(value = "/get/by/id/{id}")
     public ResponseEntity<PersonalInfoDTO> getPersonalInfoById(@PathVariable UUID id) {
         return ResponseEntity.ok().body(personalInfoService.getPersonalInfoById(id));
     }

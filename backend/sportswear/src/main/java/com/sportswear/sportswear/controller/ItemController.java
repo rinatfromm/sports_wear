@@ -17,11 +17,11 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping(value = "/create")
-    public void createBasket(@RequestBody @Valid ItemDTO itemDTO) {
-        itemService.createItem(itemDTO);
+    public ResponseEntity<ItemDTO> createItem(@RequestBody @Valid ItemDTO itemDTO) {
+        return ResponseEntity.ok(itemService.createItem(itemDTO));
     }
 
-    @GetMapping(value = "/get/by/id/{uuid}")
+    @GetMapping(value = "/get/by/id/{id}")
     public ResponseEntity<ItemDTO> getItemById(@PathVariable UUID id) {
         return ResponseEntity.ok().body(itemService.getItemById(id));
     }

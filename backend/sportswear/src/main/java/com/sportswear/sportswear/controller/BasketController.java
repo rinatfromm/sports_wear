@@ -20,7 +20,7 @@ public class BasketController {
         basketService.createBasket(basketDTO);
     }
 
-    @GetMapping(value = "/get/by/id/{uuid}")
+    @GetMapping(value = "/get/by/id/{id}")
     public ResponseEntity<BasketDTO> getBasketById(@PathVariable UUID id) {
         return ResponseEntity.ok().body(basketService.getBasketById(id));
     }
