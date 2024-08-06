@@ -20,10 +20,21 @@
     color: #344054;
     cursor: pointer;
     border-radius: 8px;
+    border: none;
 }
+
 .whatch_our_promo:hover {
     color: #603CB0;
 }
+
+.whatch_our_promo img {
+    filter: invert(34%) sepia(19%) saturate(405%) hue-rotate(174deg) brightness(97%) contrast(92%);
+}
+
+.whatch_our_promo:hover img {
+    filter: invert(38%) sepia(64%) saturate(2142%) hue-rotate(243deg) brightness(91%) contrast(93%);
+}
+
 .go_to_shopping {
     padding: 16px 28px;
     color: #FFFFFF;
@@ -32,6 +43,7 @@
     background-color: #7F56D9;
     border-radius: 8px;
 }
+
 .go_to_shopping:hover {
     background-color: #603CB0;
 }
@@ -45,4 +57,17 @@
     color: white;
     border: none;
     background-color: #7F56D9;
+}
+
+.go_to_partnership {
+    padding: 16px 28px;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+    background-color: #7F56D9;
+    border-radius: 8px;
+}
+
+.go_to_partnership:hover {
+    background-color: #603CB0;
 }

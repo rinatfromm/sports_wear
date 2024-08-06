@@ -1,6 +1,7 @@
-.features_section{
+.features_section {
     max-width: 1280px;
     margin: 0 auto;
+    font-family: "Inter", sans-serif;
 }
 
 
@@ -12,6 +13,9 @@
     color: #AA8CEF;
     font-size: 16px;
     margin-bottom: 12px;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .highlight {
@@ -23,13 +27,18 @@
     font-size: 20px;
     max-width: 670px;
     line-height: 30px;
-    font-family: "Inter";
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .features_h3 {
     color: #101828;
     font-size: 36px;
     margin-bottom: 20px;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .feature_card {
@@ -49,28 +58,43 @@
     gap: 8px;
     text-decoration: none;
     color: #AA8CEF;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
-.feature_card_container{
+.feature_card_container {
     padding-top: 32px;
 }
-.feature_title_card{
+
+.feature_title_card {
     margin-bottom: 8px;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
 }
-.features_description_card{
+
+.features_description_card {
     margin-bottom: 20px;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
-.feature_card_content{
+
+.feature_card_content {
     max-width: 440px;
 }
-.feature_card_icons{
+
+.feature_card_icons {
     position: relative;
     top: -20px;
 }
-.boxing_container{
+
+.boxing_container {
     position: relative;
 }
-.arrow{
+
+.arrow {
     position: absolute;
     top: -105px;
     left: 140px;

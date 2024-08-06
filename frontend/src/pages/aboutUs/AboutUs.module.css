@@ -1,3 +1,72 @@
 .aboutUs {
-    margin: 50px 80px 50px 100px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+    padding: 60px 80px;
+    background-color: #080F21;
+    display: flex;
+    gap: 60px;
+}
+
+.aboutUsContainer {
+    color: white;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+    margin-bottom: 56px;
+}
+
+p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.contactList {
+    list-style: none;
+    display: flex;
+}
+
+.journeyText {
+    max-width: 570px;
+    margin-bottom: 64px;
+}
+
+.highlight {
+    color: #586171;
+}
+
+.companyDescription {
+    margin-bottom: 40px;
+}
+
+.contactDetails {
+    margin: 56px 0px;
+}
+
+.invitationText {
+    margin-bottom: 64px;
+}
+
+.inspirationalMessage {
+    margin-bottom: 90px;
+}
+
+.contactList {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.contactItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight {
+    margin-bottom: 12px;
 }

@@ -1,0 +1,54 @@
+.partnersContainer {
+    padding: 120px 80px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+    background-color: #080F21;
+    color: white;
+}
+
+.contentTitle,
+.contentLogos {
+    margin: 0px 32px 48px;
+}
+.contentLogos{
+    display: flex;
+    gap: 60px;
+}
+
+.pcontentPartnership {
+    margin: 0px 32px;
+}
+
+.title {
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.partners_h3 {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+    font-weight: 600;
+}
+
+.welcomeMessage {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 400;
+    max-width: 729px;
+}
+
+.partnership {
+    max-width: 670px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #AA8CEF;
+    font-weight: 700;
+}
