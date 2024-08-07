@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.MERGE;
@@ -23,7 +22,7 @@ public class Basket {
     private UUID id;
 
     @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
-    @JoinColumn(name = "items_id", referencedColumnName = "id")
+    @JoinColumn(name = "items", referencedColumnName = "id")
     private Item itemId;
 
     @Column(name = "quantity")

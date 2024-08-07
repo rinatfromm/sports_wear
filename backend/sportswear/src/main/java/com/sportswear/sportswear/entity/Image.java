@@ -11,17 +11,18 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Data
-@Table(name = "image")
+@Table(name = "images")
 public class Image {
     @Id
     //@GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private Item itemId;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "item_id")
+//    private Item itemId;
 
-//    @Column(name = "item_id")
-//    private UUID itemId;
+    //@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private UUID itemId;
 }

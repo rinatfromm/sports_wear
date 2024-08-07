@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Data
-@Table(name = "personal_info")
+@Table(name = "personal_infos")
 public class PersonalInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -45,5 +45,5 @@ public class PersonalInfo {
 
     @UpdateTimestamp
     @Column(name = "updated")
-    private  LocalDateTime updated;
+    private LocalDateTime updated;
 }

@@ -17,7 +17,7 @@ import static jakarta.persistence.CascadeType.REFRESH;
 @AllArgsConstructor
 @Entity
 @Data
-@Table(name = "delivery_address")
+@Table(name = "delivery_addresses")
 public class DeliveryAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -25,7 +25,7 @@ public class DeliveryAddress {
     private UUID id;
 
     @ManyToOne(cascade = {MERGE, REFRESH})
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    @JoinColumn(name = "clients_id", referencedColumnName = "id", nullable = false)
     private Client client;
 
     @Column(name = "country", length = 32, nullable = false)
@@ -55,5 +55,5 @@ public class DeliveryAddress {
 
     @UpdateTimestamp
     @Column(name = "updated")
-    private  LocalDateTime updated;
+    private LocalDateTime updated;
 }

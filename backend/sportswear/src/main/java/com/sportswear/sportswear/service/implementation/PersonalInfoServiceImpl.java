@@ -23,9 +23,10 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
 
     @Override
     @Transactional
-    public void createPersonalInfo(@RequestBody @Valid PersonalInfoDTO personalInfoDTO) {
-        personalInfoRepository.save(personalInfoDTOConverter.convertDTOToPersonalInfo(personalInfoDTO));
+    public PersonalInfoDTO createPersonalInfo(@RequestBody @Valid PersonalInfoDTO personalInfoDTO) {
+        PersonalInfo personalInfo = personalInfoRepository.save(personalInfoDTOConverter.convertDTOToPersonalInfo(personalInfoDTO));
         log.info("Create personal info.");
+        return personalInfoDTOConverter.convertPersonalInfoToDTO(personalInfo);
     }
 
     @Override
@@ -35,9 +36,10 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
     }
 
     @Override
-    public void updatePersonalInfoById(PersonalInfoDTO personalInfoDTO) {
+    public PersonalInfoDTO updatePersonalInfoById(PersonalInfoDTO personalInfoDTO) {
         PersonalInfo personalInfo = personalInfoDTOConverter.convertDTOToPersonalInfo(personalInfoDTO);
-        personalInfoRepository.save(personalInfo);
+        personalInfo = personalInfoRepository.save(personalInfo);
         log.info("Update personal info by id.");
+        return personalInfoDTOConverter.convertPersonalInfoToDTO(personalInfo);
     }
 }

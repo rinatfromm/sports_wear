@@ -16,8 +16,8 @@ public class PersonalInfoController {
     private final PersonalInfoService personalInfoService;
 
     @PostMapping(value = "/create")
-    public void createPersonalInfo(@RequestBody @Valid PersonalInfoDTO personalInfoDTO) {
-        personalInfoService.createPersonalInfo(personalInfoDTO);
+    public ResponseEntity<PersonalInfoDTO> createPersonalInfo(@RequestBody @Valid PersonalInfoDTO personalInfoDTO) {
+        return ResponseEntity.ok().body(personalInfoService.createPersonalInfo(personalInfoDTO));
     }
 
     @GetMapping(value = "/get/by/id/{id}")
@@ -26,7 +26,7 @@ public class PersonalInfoController {
     }
 
     @PutMapping(value = "/update")
-    public void updatePersonalInfoById(@RequestBody @Valid PersonalInfoDTO personalInfoDTO) {
-        personalInfoService.updatePersonalInfoById(personalInfoDTO);
+    public ResponseEntity<PersonalInfoDTO> updatePersonalInfoById(@RequestBody @Valid PersonalInfoDTO personalInfoDTO) {
+        return ResponseEntity.ok().body(personalInfoService.updatePersonalInfoById(personalInfoDTO));
     }
 }

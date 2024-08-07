@@ -24,11 +24,11 @@ public class Client {
     private UUID id;
 
     @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
-    @JoinColumn(name = "personal_info_id", referencedColumnName = "id")
+    @JoinColumn(name = "personal_infos", referencedColumnName = "id")
     private PersonalInfo personalInfo;
 
     @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
-    @JoinColumn(name = "baskets_id", referencedColumnName = "id")
+    @JoinColumn(name = "baskets", referencedColumnName = "id")
     private Basket basket;
 
     @Column(name = "active")

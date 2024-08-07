@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -22,10 +23,10 @@ public class Item {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "name", length = 32, nullable = false)
+    @Column(name = "name", length = 64, nullable = false)
     private String name;
 
-    @Column(name = "category", length = 32, nullable = false)
+    @Column(name = "category", length = 64, nullable = false)
     private String category;
 
     @Column(name = "size", length = 32, nullable = false)
@@ -34,17 +35,17 @@ public class Item {
     @Column(name = "price", precision = 6, scale = 2, nullable = false)
     private BigDecimal price;
 
-    @Column(name = "weight", precision = 3, scale = 2, nullable = false)
+    @Column(name = "weight", precision = 3, scale = 3, nullable = false)
     private BigDecimal weight;
 
     @Column(name = "color", length = 32, nullable = false)
     private String color;
 
-    @Column(name = "in_stock", length = 32, nullable = false)
+    @Column(name = "in_stock", nullable = false)
     private Integer inStock;
 
-//    @OneToMany(mappedBy = "item_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Image> images;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Image> images;
 
     @CreationTimestamp
     @Column(name = "created", updatable = false)
