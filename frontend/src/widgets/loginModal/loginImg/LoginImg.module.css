@@ -1,0 +1,19 @@
+.loginImg {
+    width: 600px;
+    height: 800px;
+    background-color: #9396D8;
+    position: relative;
+}
+/* .cloud{
+    z-index: 1;
+} */
+.imagesContainer{
+}
+.girl{
+    position: absolute;
+    top: 39px;
+}
+.newcollection{
+    position: absolute;
+    bottom: 30px;
+}

@@ -1,8 +1,12 @@
 import React from 'react';
+import LoginModal from '../../widgets/loginModal';
 
 const Basket: React.FC = () => {
   return (
-    <div>Basket</div>
+    <div>
+      Basket
+      <LoginModal></LoginModal>
+    </div>
   );
 }
 

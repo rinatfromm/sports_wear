@@ -1,6 +1,7 @@
 import styles from './AboutUs.module.css'
 import about from './../../shared/ assets/  images/about_us.svg'
 import { Link } from 'react-router-dom'
+import hand_drawn from '../../shared/ assets/  images/hand_drawn.svg'
 
 
 function AboutUS() {
@@ -8,10 +9,13 @@ function AboutUS() {
     <article className={styles.aboutUs}>
       <img src={about} alt="About Us" />
       <div className={styles.aboutUsContainer}>
-        <h2>From Dreams to Reality</h2>
-        <p className={styles.journeyText}>Our journey began in a small garage with nothing but a passion for sports and a dream to empower athletes of all levels. </p>
-        <p className={styles.companyDescription}>Founded by a group of sports enthusiasts,SportEgo was born out of a desire to provide high-quality sports gear and apparel that not only meets but exceeds the needs of our customers.</p>
-        <Link to="/about" className={styles.contactLink}>mainoffice@sportego.com</Link>
+        <div className={styles.storySection}>
+          <h2>From Dreams to Reality</h2>
+          <p className={styles.journeyText}>Our journey began in a small garage with nothing but a passion for sports and a dream to empower athletes of all levels. </p>
+          <img src={hand_drawn} alt="Hand Drawn" className={styles.storyImg}/>
+          <p className={styles.companyDescription}>Founded by a group of sports enthusiasts,SportEgo was born out of a desire to provide high-quality sports gear and apparel that not only meets but exceeds the needs of our customers.</p>
+          <Link to="/about" className={styles.contactLink}>mainoffice@sportego.com</Link>
+        </div>
         <div className={styles.contactDetails}>
           <ul className={styles.contactList}>
             <li className={styles.contactItem}>

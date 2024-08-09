@@ -1,0 +1,104 @@
+.form {
+    width: 620px;
+}
+
+
+.formTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    margin-bottom: 16px;
+}
+
+.formText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 32px;
+}
+
+label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 4px;
+    color: #101828;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    background-color: #F9F5FF;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(190, 192, 193, 0.5);
+    padding: 10px 97px 10px 16px;
+    border: none; 
+    border-bottom: 2px solid #BEC0C1; 
+    outline: none;
+}
+input::placeholder {
+    color: rgba(190, 192, 193, 0.5); 
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; 
+    font-weight: 400;
+}
+.formBtnsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
+    position: relative;
+}
+.google{
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    bottom: 9px;
+    left: 77px;
+}
+.toLink {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.linkSignUp {
+    text-decoration: none;
+}
+
+.formContentContainer {
+    padding: 108px 130px;
+}
+
+.formAdress {
+    display: flex;
+    justify-content: space-between;
+}
+.adresLinks{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+.adresRight{
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+}

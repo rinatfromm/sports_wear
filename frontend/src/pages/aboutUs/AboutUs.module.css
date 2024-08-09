@@ -70,3 +70,11 @@ p {
 .highlight {
     margin-bottom: 12px;
 }
+.storySection{
+    position: relative;
+}
+.storyImg{
+    position: absolute;
+    right: 240px;
+    top: 175px;
+}
