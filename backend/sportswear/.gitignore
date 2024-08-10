@@ -2,6 +2,7 @@ HELP.md
 target/
 src/main/resources/images
 src/main/resources/log
+src/main/resources/application
 src/main/resources/application-dev
 
 

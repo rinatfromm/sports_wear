@@ -1,16 +1,17 @@
 package com.sportswear.sportswear.dto;
-import java.util.UUID;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
-public class BasketDTO {
+public class OrderItemDTO {
     private UUID id;
 
-    @NotNull(message = "Items id should not be null!")
-    private UUID itemsId;
+    @NotNull(message = "Order Id should not be null!")
+    private UUID orderId;
 
     @NotNull(message = "Quantity should not be null!")
     @Min(value = 0, message = "Quantity should not be less zen zero!")

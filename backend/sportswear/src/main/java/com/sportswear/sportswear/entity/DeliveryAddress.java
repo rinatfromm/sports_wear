@@ -41,7 +41,7 @@ public class DeliveryAddress {
     private String houseNumber;
 
     @Column(name = "floor", length = 32, nullable = false)
-    private String floor;
+    private Integer floor;
 
     @Column(name = "apartment", length = 32, nullable = false)
     private Integer apartment;

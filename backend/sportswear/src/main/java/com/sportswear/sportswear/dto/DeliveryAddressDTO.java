@@ -33,8 +33,7 @@ public class DeliveryAddressDTO {
     private String houseNumber;
 
     @NotNull(message = "Floor should not be null!")
-    @NotBlank(message = "Floor should not be empty!")
-    private String floor;
+    private Integer floor;
 
     @NotNull(message = "Apartment should not be null!")
     private Integer apartment;

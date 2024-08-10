@@ -1,6 +1,5 @@
 package com.sportswear.sportswear.dto;
 
-import com.sportswear.sportswear.entity.Basket;
 import com.sportswear.sportswear.entity.PersonalInfo;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -14,9 +13,6 @@ public class ClientDTO {
 
     @NotNull(message = "Personal info should not be null!")
     private PersonalInfo personalInfo;
-
-    @NotNull(message = "Basket should not be null!")
-    private Basket basket;
 
     @NotNull(message = "Active should not be null!")
     @AssertTrue(message = "Active is wrong!")

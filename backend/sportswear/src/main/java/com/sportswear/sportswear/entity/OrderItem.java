@@ -7,24 +7,20 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.MERGE;
-import static jakarta.persistence.CascadeType.REFRESH;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Data
-@Table(name = "baskets")
-public class Basket {
+@Table(name = "order_items")
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
-    @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
-    @JoinColumn(name = "items", referencedColumnName = "id")
-    private Item itemId;
+    @Column(name = "order_id")
+    private UUID orderId;
 
-    @Column(name = "quantity")
+    @Column(name = "item_id")
     private Integer quantity;
 }
