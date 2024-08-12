@@ -25,7 +25,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public ClientDTO createClient(@RequestBody @Valid ClientDTO clientDTO) {
+    public ClientDTO createClient(ClientDTO clientDTO) {
         Client client = clientRepository.save(clientDTOConverter.convertDTOToClient(clientDTO));
         log.info("Create client.");
         return clientDTOConverter.convertClientToDTO(client);
@@ -50,7 +50,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public ClientDTO updateClient(@RequestBody @Valid ClientDTO clientDTO) {
+    public ClientDTO updateClient(ClientDTO clientDTO) {
         if (!clientRepository.existsById(clientDTO.getId())) {
             new NoSuchElementException("Could not update non existing client!");
         }

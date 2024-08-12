@@ -28,12 +28,12 @@ public class ImageController {
     private final ImageService imageService;
 
     @PostMapping(value = "/upload/by/item/id/{itemId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void uploadImage(@PathVariable UUID itemId, @RequestParam("file") MultipartFile image) throws IOException {
+    public void uploadImage(@PathVariable @Valid UUID itemId, @RequestParam("file") MultipartFile image) throws IOException {
         imageService.uploadImage(itemId, image);
     }
 
     @GetMapping(value = "/download/by/id/{id}")
-    public ResponseEntity<Resource> downloadImage(@PathVariable UUID id) throws IOException {
+    public ResponseEntity<Resource> downloadImage(@PathVariable @Valid UUID id) throws IOException {
         Resource file = imageService.downloadImage(id);
 
         HttpHeaders headers = new HttpHeaders();
@@ -44,7 +44,7 @@ public class ImageController {
     }
 
     @GetMapping(value = "/get/by/item/id/{id}")
-    public ResponseEntity<List<ImageDTO>> getImageByItemId(@PathVariable UUID id) {
+    public ResponseEntity<List<ImageDTO>> getImageByItemId(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(imageService.getAllImagesByItemId(id));
     }
 

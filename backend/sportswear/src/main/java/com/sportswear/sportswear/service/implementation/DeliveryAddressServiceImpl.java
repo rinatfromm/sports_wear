@@ -26,7 +26,7 @@ public class DeliveryAddressServiceImpl implements DeliveryAddressService {
 
     @Override
     @Transactional
-    public DeliveryAddressDTO createDeliveryAddress(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
+    public DeliveryAddressDTO createDeliveryAddress(DeliveryAddressDTO deliveryAddressDTO) {
         DeliveryAddress deliveryAddress = deliveryAddressRepository
                 .save(deliveryAddressDTOConverter.convertDTOToDeliveryAddress(deliveryAddressDTO));
         log.info("Create delivery address.");
@@ -52,7 +52,7 @@ public class DeliveryAddressServiceImpl implements DeliveryAddressService {
 
     @Override
     @Transactional
-    public DeliveryAddressDTO updateDeliveryAddress(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
+    public DeliveryAddressDTO updateDeliveryAddress(DeliveryAddressDTO deliveryAddressDTO) {
         if (!deliveryAddressRepository.existsById(deliveryAddressDTO.getId())) {
             new NoSuchElementException("COuld not update non existing delivery address!");
         }

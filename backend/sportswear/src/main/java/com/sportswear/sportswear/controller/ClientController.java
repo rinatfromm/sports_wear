@@ -22,7 +22,7 @@ public class ClientController {
     }
 
     @GetMapping(value = "/get/by/id/{id}")
-    public ResponseEntity<ClientDTO> getClientById(@PathVariable UUID id) {
+    public ResponseEntity<ClientDTO> getClientById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(clientService.getClientById(id));
     }
 
@@ -37,7 +37,7 @@ public class ClientController {
     }
 
     @DeleteMapping(value = "/delete/by/id{id}")
-    public ResponseEntity<String> deleteClientById(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteClientById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(clientService.deleteClientById(id));
     }
 }

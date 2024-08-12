@@ -21,7 +21,7 @@ public class DeliveryAddressController {
     }
 
     @GetMapping(value = "/get/by/id/{id}")
-    public ResponseEntity<DeliveryAddressDTO> getDeliveryAddressById(@PathVariable UUID id) {
+    public ResponseEntity<DeliveryAddressDTO> getDeliveryAddressById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(deliveryAddressService.getDeliveryAddressById(id));
     }
 
@@ -31,7 +31,7 @@ public class DeliveryAddressController {
     }
 
     @DeleteMapping(value = "/delete/by/id/{id}")
-    public ResponseEntity<String> deleteDeliveryAddressById(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteDeliveryAddressById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(deliveryAddressService.deleteDeliveryAddressById(id));
     }
 }

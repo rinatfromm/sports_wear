@@ -21,7 +21,7 @@ public class OrderItemController {
     }
 
     @GetMapping(value = "/get/by/order/id/{id}")
-    public ResponseEntity<OrderItemDTO> getOrderItemByOrderId(@PathVariable UUID id) throws Exception {
+    public ResponseEntity<OrderItemDTO> getOrderItemByOrderId(@PathVariable @Valid UUID id) throws Exception {
         return ResponseEntity.ok().body(orderItemService.getOrderItemByOrderId(id));
     }
 
@@ -31,7 +31,7 @@ public class OrderItemController {
     }
 
     @DeleteMapping(value = "/delete/by/id/{id}")
-    public ResponseEntity<String> deleteOrderItemById(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteOrderItemById(@PathVariable @ Valid UUID id) {
         return ResponseEntity.ok().body(orderItemService.deleteOrderItemById(id));
     }
 }

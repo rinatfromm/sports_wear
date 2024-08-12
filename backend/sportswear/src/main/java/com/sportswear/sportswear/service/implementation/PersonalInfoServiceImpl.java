@@ -24,7 +24,7 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
 
     @Override
     @Transactional
-    public PersonalInfoDTO createPersonalInfo(@RequestBody @Valid PersonalInfoDTO personalInfoDTO) {
+    public PersonalInfoDTO createPersonalInfo(PersonalInfoDTO personalInfoDTO) {
         PersonalInfo personalInfo = personalInfoRepository.save(personalInfoDTOConverter.convertDTOToPersonalInfo(personalInfoDTO));
         log.info("Create personal info.");
         return personalInfoDTOConverter.convertPersonalInfoToDTO(personalInfo);
