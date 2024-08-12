@@ -84,7 +84,7 @@ input::placeholder {
 }
 
 .formContentContainer {
-    padding: 108px 130px;
+    padding: 108px 130px 140px 130px;
 }
 
 .formAdress {
