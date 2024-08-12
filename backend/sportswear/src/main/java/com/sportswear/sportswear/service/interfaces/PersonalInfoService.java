@@ -8,4 +8,5 @@ public interface PersonalInfoService {
     PersonalInfoDTO createPersonalInfo(PersonalInfoDTO personalInfoDTO);
     PersonalInfoDTO getPersonalInfoById(UUID id);
     PersonalInfoDTO updatePersonalInfoById(PersonalInfoDTO personalInfoDTO);
+    String deletePersonalInfoById(UUID id);
 }

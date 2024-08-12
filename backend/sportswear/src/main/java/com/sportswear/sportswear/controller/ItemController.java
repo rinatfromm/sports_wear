@@ -18,11 +18,11 @@ public class ItemController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<ItemDTO> createItem(@RequestBody @Valid ItemDTO itemDTO) {
-        return ResponseEntity.ok(itemService.createItem(itemDTO));
+        return ResponseEntity.ok().body(itemService.createItem(itemDTO));
     }
 
     @GetMapping(value = "/get/by/id/{id}")
-    public ResponseEntity<ItemDTO> getItemById(@PathVariable UUID id) {
+    public ResponseEntity<ItemDTO> getItemById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(itemService.getItemById(id));
     }
 
@@ -32,7 +32,12 @@ public class ItemController {
     }
 
     @PutMapping(value = "/update")
-    public void updateItemById(@RequestBody @Valid ItemDTO itemDTO) {
-        itemService.updateItemById(itemDTO);
+    public ResponseEntity<ItemDTO> updateItemById(@RequestBody @Valid ItemDTO itemDTO) {
+        return ResponseEntity.ok().body(itemService.updateItemById(itemDTO));
+    }
+
+    @DeleteMapping(value = "/delete/by/id/{id}")
+    public ResponseEntity<String> deleteItemById(@PathVariable @Valid UUID id) {
+        return ResponseEntity.ok().body(itemService.deleteItemById(id));
     }
 }

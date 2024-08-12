@@ -16,8 +16,8 @@ public class DeliveryAddressController {
     private final DeliveryAddressService deliveryAddressService;
 
     @PostMapping(value = "/create")
-    public void createDeliveryAddress(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
-        deliveryAddressService.createDeliveryAddress(deliveryAddressDTO);
+    public ResponseEntity<DeliveryAddressDTO> createDeliveryAddress(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
+        return ResponseEntity.ok().body(deliveryAddressService.createDeliveryAddress(deliveryAddressDTO));
     }
 
     @GetMapping(value = "/get/by/id/{id}")
@@ -26,7 +26,12 @@ public class DeliveryAddressController {
     }
 
     @PutMapping(value = "/update")
-    public void updateDeliveryAddressById(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
-        deliveryAddressService.updateDeliveryAddressById(deliveryAddressDTO);
+    public ResponseEntity<DeliveryAddressDTO> updateDeliveryAddress(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
+        return ResponseEntity.ok().body(deliveryAddressService.updateDeliveryAddress(deliveryAddressDTO));
+    }
+
+    @DeleteMapping(value = "/delete/by/id/{id}")
+    public ResponseEntity<String> deleteDeliveryAddressById(@PathVariable UUID id) {
+        return ResponseEntity.ok().body(deliveryAddressService.deleteDeliveryAddressById(id));
     }
 }

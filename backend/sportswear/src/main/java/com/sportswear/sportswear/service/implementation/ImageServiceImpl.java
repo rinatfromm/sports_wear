@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Slf4j
@@ -38,16 +39,17 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public void uploadImage(UUID id, MultipartFile image) throws IOException {
+    public ImageDTO uploadImage(UUID id, MultipartFile imageFile) throws IOException {
         UUID imageId = UUID.randomUUID();
         String imageName = imageId + imageType;
         String imageUrl = imagePath + imageName;
         Image dbImage = new Image();
         dbImage.setId(imageId);
         dbImage.setItemId(id);
-        imageRepository.save(dbImage);
-        Files.write(Paths.get(imageUrl), image.getBytes());
-        log.info("Upload image.");
+        Image image = imageRepository.save(dbImage);
+        Files.write(Paths.get(imageUrl), imageFile.getBytes());
+        log.info("Upload image. id " + id);
+        return imageDTOConverter.convertImageToDTO(image);
     }
 
     @Override
@@ -69,34 +71,40 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public Image getImageById(UUID id) {
-        log.info("Get image by id.");
-        return imageRepository.findAllById(id);
+    public ImageDTO getImageById(UUID id) {
+        Image image = imageRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Image does not exist! id " + id));
+        log.info("Get image. id " + id);
+        return imageDTOConverter.convertImageToDTO(image);
     }
 
     @Override
     @Transactional
-    public List<Image> getAllImagesByItemId(UUID id) {
-        return imageRepository.getAllByItemId(id);
+    public List<ImageDTO> getAllImagesByItemId(UUID id) {
+        return imageDTOConverter.convertImagesToDTOs(imageRepository.getAllByItemId(id));
     }
+
     @Override
     @Transactional
-    public List<Image> getAllImages() {
+    public List<ImageDTO> getAllImages() {
         log.info("Get all images.");
-        return imageRepository.findAll();
+        return imageDTOConverter.convertImagesToDTOs(imageRepository.findAll());
     }
 
     @Override
     @Transactional
-    public void updateImageById(ImageDTO imageDTO) {
-        Image image = imageDTOConverter.convertDTOToImage(imageDTO);
-        imageRepository.save(image);
-        log.info("Update image by id.");
+    public ImageDTO updateImage(ImageDTO imageDTO) {
+        if (!imageRepository.existsById(imageDTO.getId())) {
+            new NoSuchElementException("Could not update non existing order!");
+        }
+        Image image = imageRepository.save(imageDTOConverter.convertDTOToImage(imageDTO));
+        log.info("Update image.");
+        return imageDTOConverter.convertImageToDTO(image);
     }
 
     @Override
     @Transactional
-    public void deleteImageById(UUID id) {
+    public String deleteImageById(UUID id) {
         String imageUrl = imagePath + id + ".jpg";
         try {
             Files.delete(Paths.get(imageUrl));
@@ -104,5 +112,6 @@ public class ImageServiceImpl implements ImageService {
         } catch (Exception e) {
             throw new RuntimeException("Couldn't delete file! File not found!");
         }
+        return "Image deleted! id " + id;
     }
 }

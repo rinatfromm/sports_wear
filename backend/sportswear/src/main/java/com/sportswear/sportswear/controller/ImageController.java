@@ -1,7 +1,6 @@
 package com.sportswear.sportswear.controller;
 
 import com.sportswear.sportswear.dto.ImageDTO;
-import com.sportswear.sportswear.entity.Image;
 import com.sportswear.sportswear.service.interfaces.ImageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +44,7 @@ public class ImageController {
     }
 
     @GetMapping(value = "/get/by/item/id/{id}")
-    public ResponseEntity<List<Image>> getImageByItemId(@PathVariable UUID id) {
+    public ResponseEntity<List<ImageDTO>> getImageByItemId(@PathVariable UUID id) {
         return ResponseEntity.ok().body(imageService.getAllImagesByItemId(id));
     }
 
@@ -59,17 +58,17 @@ public class ImageController {
     }
 
     @PostMapping(value = "/get/all")
-    public ResponseEntity<List<Image>> getAllImages() {
+    public ResponseEntity<List<ImageDTO>> getAllImages() {
         return ResponseEntity.ok().body(imageService.getAllImages());
     }
 
     @PutMapping(value = "/update")
-    public void updateBasketById(@RequestBody @Valid ImageDTO imageDTO) {
-        imageService.updateImageById(imageDTO);
+    public ResponseEntity<ImageDTO> updateBasketById(@RequestBody @Valid ImageDTO imageDTO) {
+        return ResponseEntity.ok().body(imageService.updateImage(imageDTO));
     }
 
     @DeleteMapping(value = "/delete/by/{id}")
-    public void deleteImageById(@PathVariable UUID id) {
-        imageService.deleteImageById(id);
+    public ResponseEntity<String> deleteImageById(@PathVariable @Valid UUID id) {
+        return ResponseEntity.ok().body(imageService.deleteImageById(id));
     }
 }

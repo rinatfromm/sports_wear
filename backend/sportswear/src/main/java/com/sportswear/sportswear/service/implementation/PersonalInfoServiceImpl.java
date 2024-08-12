@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Slf4j
@@ -31,15 +32,29 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
 
     @Override
     public PersonalInfoDTO getPersonalInfoById(UUID id) {
-        log.info("Get personal info by id.");
-        return personalInfoDTOConverter.convertPersonalInfoToDTO(personalInfoRepository.findAllById(id));
+        PersonalInfo personalInfo = personalInfoRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Personal info does not exist!"));
+        log.info("Get personal info. id " + id);
+        return personalInfoDTOConverter.convertPersonalInfoToDTO(personalInfo);
     }
 
     @Override
     public PersonalInfoDTO updatePersonalInfoById(PersonalInfoDTO personalInfoDTO) {
-        PersonalInfo personalInfo = personalInfoDTOConverter.convertDTOToPersonalInfo(personalInfoDTO);
-        personalInfo = personalInfoRepository.save(personalInfo);
+        if (!personalInfoRepository.existsById(personalInfoDTO.getId())) {
+            new NoSuchElementException("Could not update non existing personal info!");
+        }
+        PersonalInfo personalInfo = personalInfoRepository
+                .save(personalInfoDTOConverter.convertDTOToPersonalInfo(personalInfoDTO));
         log.info("Update personal info by id.");
         return personalInfoDTOConverter.convertPersonalInfoToDTO(personalInfo);
+    }
+
+    @Override
+    public String deletePersonalInfoById(UUID id) {
+        if (!personalInfoRepository.existsById(id)) {
+            new NoSuchElementException("Could not delete non existing personal info! id " + id);
+        }
+        personalInfoRepository.deleteById(id);
+        return "Personal info deleted! id " + id;
     }
 }

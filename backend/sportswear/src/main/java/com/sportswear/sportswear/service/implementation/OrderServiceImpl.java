@@ -1,41 +1,60 @@
 package com.sportswear.sportswear.service.implementation;
 
+import com.sportswear.sportswear.converter.OrderDTOConverter;
 import com.sportswear.sportswear.dto.OrderDTO;
 import com.sportswear.sportswear.entity.Order;
+import com.sportswear.sportswear.repository.OrderRepository;
 import com.sportswear.sportswear.service.interfaces.OrderService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
+    private final OrderRepository orderRepository;
+    private final OrderDTOConverter orderDTOConverter;
+
     @Override
+    @Transactional
     public OrderDTO createOrder(OrderDTO orderDTO) {
-        return null;
+        Order order = orderRepository.save(orderDTOConverter.convertDTOToOrder(orderDTO));
+        log.info("Create client.");
+        return orderDTOConverter.convertOrderToDTO(order);
     }
 
     @Override
+    @Transactional
     public OrderDTO getOrderById(UUID id) {
-        return null;
+        Order order = orderRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Order does not exist!"));
+        log.info("Get order. id " + id);
+        return orderDTOConverter.convertOrderToDTO(order);
     }
 
     @Override
-    public List<Order> getOrdersByClientId(UUID id) {
-        return List.of();
+    @Transactional
+    public OrderDTO updateOrder(OrderDTO orderDTO) {
+        if (!orderRepository.existsById(orderDTO.getId())) {
+            new NoSuchElementException("Could not update non existing order!");
+        }
+        Order order = orderRepository.save(orderDTOConverter.convertDTOToOrder(orderDTO));
+        log.info("Update order.");
+        return orderDTOConverter.convertOrderToDTO(order);
     }
 
     @Override
-    public OrderDTO updateOrderById(OrderDTO orderDTO) {
-        return null;
-    }
-
-    @Override
+    @Transactional
     public String deleteOrderById(UUID id) {
-        return "";
+        if (!orderRepository.existsById(id)) {
+            new NoSuchElementException("Could not delete non existing order item! id " + id);
+        }
+        orderRepository.deleteById(id);
+        return "Order deleted! id " + id;
     }
 }

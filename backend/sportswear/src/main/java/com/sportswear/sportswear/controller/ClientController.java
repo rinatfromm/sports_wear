@@ -17,8 +17,8 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping(value = "/create")
-    public void createClient(@RequestBody @Valid ClientDTO createDTO) {
-        clientService.createClient(createDTO);
+    public ResponseEntity<ClientDTO> createClient(@RequestBody @Valid ClientDTO createDTO) {
+        return ResponseEntity.ok().body(clientService.createClient(createDTO));
     }
 
     @GetMapping(value = "/get/by/id/{id}")
@@ -32,7 +32,12 @@ public class ClientController {
     }
 
     @PutMapping(value = "/update")
-    public void updateClientById(@RequestBody @Valid ClientDTO clientDTO) {
-        clientService.updateClientById(clientDTO);
+    public ResponseEntity<ClientDTO> updateClientById(@RequestBody @Valid ClientDTO clientDTO) {
+        return ResponseEntity.ok().body(clientService.updateClient(clientDTO));
+    }
+
+    @DeleteMapping(value = "/delete/by/id{id}")
+    public ResponseEntity<String> deleteClientById(@PathVariable UUID id) {
+        return ResponseEntity.ok().body(clientService.deleteClientById(id));
     }
 }

@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Slf4j
@@ -37,8 +38,10 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @Transactional
     public ItemDTO getItemById(UUID id) {
-        log.info("Get item by id.");
-        return itemDTOConverter.convertItemToDTO(itemRepository.findById(id).orElse(null));
+        Item item = itemRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Item does not exist!"));
+        log.info("Get item by id." + id);
+        return itemDTOConverter.convertItemToDTO(item);
     }
 
     @Override
@@ -61,9 +64,21 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     @Transactional
-    public void updateItemById(ItemDTO itemDTO) {
-        Item item = itemDTOConverter.convertDTOToItem(itemDTO);
-        itemRepository.save(item);
+    public ItemDTO updateItemById(ItemDTO itemDTO) {
+        if (!itemRepository.existsById(itemDTO.getId())) {
+            new NoSuchElementException("Could not update non existing item!");
+        }
+        Item item = itemRepository.save(itemDTOConverter.convertDTOToItem(itemDTO));
         log.info("Update item by id.");
+        return itemDTOConverter.convertItemToDTO(item);
+    }
+
+    @Override
+    public String deleteItemById(UUID id) {
+        if (!itemRepository.existsById(id)) {
+            new NoSuchElementException("Could not delete non existing item!");
+        }
+        itemRepository.deleteById(id);
+        return "Item deleted! id " + id;
     }
 }

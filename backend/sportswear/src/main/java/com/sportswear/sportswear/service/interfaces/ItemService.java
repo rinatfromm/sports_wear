@@ -11,5 +11,6 @@ public interface ItemService {
     ItemDTO getItemById(UUID id);
     List<ItemDTO> getAllItems();
     ImageDTO addImageToProduct(UUID productId, ImageDTO imageDTO);
-    void updateItemById(ItemDTO itemDTO);
+    ItemDTO updateItemById(ItemDTO itemDTO);
+    String deleteItemById(UUID id);
 }

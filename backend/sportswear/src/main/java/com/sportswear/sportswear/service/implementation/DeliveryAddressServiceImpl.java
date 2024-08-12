@@ -9,10 +9,12 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Slf4j
@@ -24,16 +26,20 @@ public class DeliveryAddressServiceImpl implements DeliveryAddressService {
 
     @Override
     @Transactional
-    public void createDeliveryAddress(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
-        deliveryAddressRepository.save(deliveryAddressDTOConverter.convertDTOToDeliveryAddress(deliveryAddressDTO));
-        log.info("Create delivery address info.");
+    public DeliveryAddressDTO createDeliveryAddress(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
+        DeliveryAddress deliveryAddress = deliveryAddressRepository
+                .save(deliveryAddressDTOConverter.convertDTOToDeliveryAddress(deliveryAddressDTO));
+        log.info("Create delivery address.");
+        return deliveryAddressDTOConverter.convertDeliveryAddressToDTO(deliveryAddress);
     }
 
     @Override
     @Transactional
     public DeliveryAddressDTO getDeliveryAddressById(UUID id) {
-        log.info("Get delivery address by id.");
-        return deliveryAddressDTOConverter.convertDeliveryAddressToDTO(deliveryAddressRepository.findAllById(id));
+        DeliveryAddress deliveryAddress = deliveryAddressRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("DeliveryAddress does not exist!"));
+        log.info("Get delivery address by id." + id);
+        return deliveryAddressDTOConverter.convertDeliveryAddressToDTO(deliveryAddress);
     }
 
     @Override
@@ -46,9 +52,22 @@ public class DeliveryAddressServiceImpl implements DeliveryAddressService {
 
     @Override
     @Transactional
-    public void updateDeliveryAddressById(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
-        DeliveryAddress deliveryAddress = deliveryAddressDTOConverter.convertDTOToDeliveryAddress(deliveryAddressDTO);
-        deliveryAddressRepository.save(deliveryAddress);
-        log.info("Update delivery address by id.");
+    public DeliveryAddressDTO updateDeliveryAddress(@RequestBody @Valid DeliveryAddressDTO deliveryAddressDTO) {
+        if (!deliveryAddressRepository.existsById(deliveryAddressDTO.getId())) {
+            new NoSuchElementException("COuld not update non existing delivery address!");
+        }
+        DeliveryAddress deliveryAddress = deliveryAddressRepository
+                .save(deliveryAddressDTOConverter.convertDTOToDeliveryAddress(deliveryAddressDTO));
+        log.info("Update delivery address.");
+        return deliveryAddressDTOConverter.convertDeliveryAddressToDTO(deliveryAddress);
+    }
+
+    @Override
+    @Transactional
+    public String deleteDeliveryAddressById(UUID id) {
+        if (!deliveryAddressRepository.existsById(id)) {
+            new NoSuchElementException("Could not delete non existing delivery address! id " + id);
+        }
+        return "Delivery address deleted! id " + id;
     }
 }

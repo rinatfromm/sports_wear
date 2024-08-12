@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface DeliveryAddressService {
-    void createDeliveryAddress(DeliveryAddressDTO deliveryAddressDTO);
+    DeliveryAddressDTO createDeliveryAddress(DeliveryAddressDTO deliveryAddressDTO);
     DeliveryAddressDTO getDeliveryAddressById(UUID id);
     List<DeliveryAddressDTO> getAllDeliveryAddresses();
-    void updateDeliveryAddressById(DeliveryAddressDTO deliveryAddressDTO);
+    DeliveryAddressDTO updateDeliveryAddress(DeliveryAddressDTO deliveryAddressDTO);
+    String deleteDeliveryAddressById(UUID id);
 }

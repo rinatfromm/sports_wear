@@ -9,7 +9,6 @@ import java.util.UUID;
 public interface OrderService {
     OrderDTO createOrder(OrderDTO orderDTO);
     OrderDTO getOrderById(UUID id);
-    List<Order> getOrdersByClientId(UUID id);
-    OrderDTO updateOrderById(OrderDTO orderDTO);
+    OrderDTO updateOrder(OrderDTO orderDTO);
     String deleteOrderById(UUID id);
 }

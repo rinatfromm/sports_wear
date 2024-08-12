@@ -21,12 +21,17 @@ public class PersonalInfoController {
     }
 
     @GetMapping(value = "/get/by/id/{id}")
-    public ResponseEntity<PersonalInfoDTO> getPersonalInfoById(@PathVariable UUID id) {
+    public ResponseEntity<PersonalInfoDTO> getPersonalInfoById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(personalInfoService.getPersonalInfoById(id));
     }
 
     @PutMapping(value = "/update")
     public ResponseEntity<PersonalInfoDTO> updatePersonalInfoById(@RequestBody @Valid PersonalInfoDTO personalInfoDTO) {
         return ResponseEntity.ok().body(personalInfoService.updatePersonalInfoById(personalInfoDTO));
+    }
+
+    @DeleteMapping(value = "/delete/by/id/{id}")
+    public ResponseEntity<String> deletePersonalInfoById(@PathVariable @Valid UUID id) {
+        return ResponseEntity.ok().body(personalInfoService.deletePersonalInfoById(id));
     }
 }

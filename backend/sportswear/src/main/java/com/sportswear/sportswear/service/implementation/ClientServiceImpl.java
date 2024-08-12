@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Slf4j
@@ -24,16 +25,19 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public void createClient(@RequestBody @Valid ClientDTO clientDTO) {
-        clientRepository.save(clientDTOConverter.convertDTOToClient(clientDTO));
+    public ClientDTO createClient(@RequestBody @Valid ClientDTO clientDTO) {
+        Client client = clientRepository.save(clientDTOConverter.convertDTOToClient(clientDTO));
         log.info("Create client.");
+        return clientDTOConverter.convertClientToDTO(client);
     }
 
     @Override
     @Transactional
     public ClientDTO getClientById(UUID id) {
-        log.info("Get client by id.");
-        return clientDTOConverter.convertClientToDTO(clientRepository.findAllById(id));
+        Client client = clientRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Client does not exist!"));
+        log.info("Get client by id." + id);
+        return clientDTOConverter.convertClientToDTO(client);
     }
 
     @Override
@@ -46,9 +50,22 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public void updateClientById(@RequestBody @Valid ClientDTO clientDTO) {
-        Client client = clientDTOConverter.convertDTOToClient(clientDTO);
-        clientRepository.save(client);
-        log.info("Update client by id.");
+    public ClientDTO updateClient(@RequestBody @Valid ClientDTO clientDTO) {
+        if (!clientRepository.existsById(clientDTO.getId())) {
+            new NoSuchElementException("Could not update non existing client!");
+        }
+        Client client = clientRepository.save(clientDTOConverter.convertDTOToClient(clientDTO));
+        log.info("Update client.");
+        return clientDTOConverter.convertClientToDTO(client);
+    }
+
+    @Override
+    @Transactional
+    public String deleteClientById(UUID id) {
+        if (!clientRepository.existsById(id)) {
+            new NoSuchElementException("Could not delete non existing client! id " + id);
+        }
+        clientRepository.deleteById(id);
+        return "Client deleted! id " + id;
     }
 }
