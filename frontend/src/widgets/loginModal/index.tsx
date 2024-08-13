@@ -1,16 +1,21 @@
-import styles from './LoginModal.module.css'
-import LoginForm from './loginForm'
-import modal_img from '../../shared/ assets/  images/modal_img.svg'
+import React from 'react';
+import styles from './LoginModal.module.css';
+import LoginForm from './loginForm/index';
+import modal_img from '../../shared/ assets/  images/modal_img.svg';
 
-function LoginModal() {
+interface LoginModalProps {
+    onClose: () => void;
+}
+
+const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
     return (
         <div className={styles.modal}>
             <div className={styles.modalContent}>
-                <LoginForm />
-                <img src={modal_img} alt="Modal Image" className={styles.modalImg}/>
+                <LoginForm onClose={onClose} />
+                <img src={modal_img} alt="Modal Image" className={styles.modalImg} />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default LoginModal
+export default LoginModal;

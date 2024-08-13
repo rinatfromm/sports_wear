@@ -18,7 +18,7 @@ function Footer(): JSX.Element {
                         navItemClass="navItemFooter"
                         activeLinkClass="activeLinkFooter"
                         dropdownToggle='dropdownToggleFooter'
-                        arrowImg="arrowImgFooter"
+                        arrowBottomClass='arrowFooter'
                     />
                 </div>
                 <div className={styles.right}>

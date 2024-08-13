@@ -62,6 +62,10 @@ p {
     gap: 40px;
 }
 
+.contactLink {
+    text-decoration: none;
+}
+
 .contactItem {
     display: flex;
     flex-direction: column;
@@ -70,11 +74,22 @@ p {
 .highlight {
     margin-bottom: 12px;
 }
-.storySection{
+
+.storySection {
     position: relative;
 }
-.storyImg{
+
+.storyImg {
     position: absolute;
     right: 240px;
     top: 175px;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 40px;
+}
+
+.socialLinks a {
+    color: #FFFFFF;
 }

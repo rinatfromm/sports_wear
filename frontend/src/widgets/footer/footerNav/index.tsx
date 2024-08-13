@@ -3,8 +3,11 @@ import styles from './FotterNav.module.css'
 
 function FotterNav() {
     return (
-        <div>
-            <NavBar />
+        <div className={styles.footer}>
+            <NavBar containerClass="navBar"
+                linkClass="link"
+                navItemClass="navItem"
+                activeLinkClass="activeLink" />
         </div>
     )
 }

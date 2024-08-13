@@ -3,7 +3,6 @@ import styles from './NavBar.module.css';
 import { NavLink } from 'react-router-dom';
 import { navigationItems } from '../configHeader';
 import { NavItem } from '../../../app/types/NavItem';
-// import LogoHeader from '../logo';
 import ProductSelect from '../../productSelect';
 
 interface NavBarProps {
@@ -12,7 +11,7 @@ interface NavBarProps {
   navItemClass?: string;
   activeLinkClass?: string;
   dropdownToggle?: string;
-  arrowImg?:string;
+  arrowBottomClass?: string;
 }
 
 
@@ -20,7 +19,7 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({
   containerClass,
   dropdownToggle,
-  arrowImg,
+  arrowBottomClass,
   linkClass = 'link',
   navItemClass = 'navItem',
   activeLinkClass = 'activeLink'
@@ -35,7 +34,7 @@ const NavBar: React.FC<NavBarProps> = ({
       <ProductSelect
         onSelect={handleProductSelect}
         dropdownToggle={dropdownToggle}
-        arrowImg={arrowImg}
+        arrowBottomClass={arrowBottomClass}
       />
       {navigationItems.map((item: NavItem) => (
         <li key={item.to} className={styles[navItemClass]}>

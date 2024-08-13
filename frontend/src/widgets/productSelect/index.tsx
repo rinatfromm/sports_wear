@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { products } from './products';
 import styles from './ProductSelect.module.css';
-import arrow_bottom from '../../shared/icons/arrow-bottom.svg'
+// import arrow_bottom from '../../shared/icons/arrow-bottom.svg'
 
 interface ProductSelectProps {
     onSelect: (productId: number) => void;
     dropdownToggle?: string;
-    arrowImg?: string;
+    arrowBottomClass?: string;
 }
 
-const ProductSelect: React.FC<ProductSelectProps> = ({ onSelect, dropdownToggle = 'dropdownToggle', arrowImg = "arrowImg" }) => {
+const ProductSelect: React.FC<ProductSelectProps> = ({ onSelect, dropdownToggle = 'dropdownToggle', arrowBottomClass = 'arrowBottomClass' }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
@@ -17,9 +17,8 @@ const ProductSelect: React.FC<ProductSelectProps> = ({ onSelect, dropdownToggle 
     return (
         <div className={styles.productSelect}>
             <button onClick={toggleDropdown} className={styles[dropdownToggle]}>
-                Products 
-                <img src={arrow_bottom} alt="" className={arrowImg}/>
-                {/* <span className={styles.arrow}>⌵</span> */}
+                Products
+                <div className={styles[arrowBottomClass]}></div>
             </button>
             {isOpen && (
                 <ul className={styles.dropdownMenu}>
