@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import BasketLogo from './BasketLogo';
 import styles from './Header.module.css';
-import search from '../../shared/icons/search.svg';
 import NavBar from '../header/navbar/index';
 import Button from '../../shared/ui/button';
 import LogoHeader from '../header/logo/index';
 import LoginModal from '../loginModal/index';
+import SearchBar from './searchBar';
+import { useAuth } from '../../shared/hooks/useAuth';
 
 const Header: React.FC = () => {
     const [background, setBackground] = useState<string>('transparent');
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const { isModalOpen, handleLoginClick, handleCloseModal } = useAuth();
 
     const handleScroll = () => {
         if (window.scrollY > 50) {
@@ -17,14 +18,6 @@ const Header: React.FC = () => {
         } else {
             setBackground('transparent');
         }
-    };
-
-    const handleLoginClick = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
     };
 
     useEffect(() => {
@@ -49,10 +42,7 @@ const Header: React.FC = () => {
                         />
                     </div>
                     <div className={styles.btnsContainer}>
-                        <div className={styles.inputWrapper}>
-                            <input type="text" className={styles.search} placeholder="Search" />
-                            <img src={search} alt="Search Icon" className={styles.icon} />
-                        </div>
+                        <SearchBar />
                         <BasketLogo />
                         <Button className='btns' title="Log in" onClick={handleLoginClick} />
                     </div>

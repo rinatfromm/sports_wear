@@ -3,14 +3,34 @@ import { Link } from 'react-router-dom';
 import Button from '../../../shared/ui/button';
 import styles from './LoginForm.module.css';
 import google from '../../../shared/icons/google.svg';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { LoginFormData } from '../../../app/types/LoginFormData';
+import { LoginFormProps } from '../../../app/types/LoginFormProps';
+import { inputFields } from '../../../shared/utils/formConfig';
+import InputField from '../../../shared/ui/inputField';
 
-interface LoginFormProps {
-    onClose: () => void;
-}
+
 
 const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm<LoginFormData>({
+        mode: "all",
+    });
+
+
+    const getDataFormInputs: SubmitHandler<LoginFormData> = (data) => {
+        console.log(data);
+        reset();
+    };
+
+
     return (
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit(getDataFormInputs)}>
             <Button className='formBtn' title='X' onClick={onClose} />
             <div className={styles.formContentContainer}>
                 <h3 className={styles.formTitle}>Welcome back</h3>
@@ -18,26 +38,19 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
                     We are pleased to know that you have decided to continue your sports adventure with us.
                 </p>
                 <div className={styles.inputContainer}>
-                    <div className={styles.inputWrapper}>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            required
-                        />
-                    </div>
-                    <div className={styles.inputWrapper}>
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            required
-                        />
-                    </div>
+                    {inputFields.map((field) => {
+                        return (
+                            <InputField
+                                key={field.name}
+                                name={field.name}
+                                validation={field.validation}
+                                placeholder={field.placeholder}
+                                register={register}
+                                errors={errors}
+                                className={"inputWrapper"}
+                            />
+                        );
+                    })}
                 </div>
                 <div className={styles.formBtnsContainer}>
                     <Button className='formBtnContinue' title='Continue' />

@@ -1,8 +1,3 @@
-.form {
-    width: 620px;
-}
-
-
 .formTitle {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
@@ -41,6 +36,7 @@ label {
 }
 
 input {
+    width: 100%;
     background-color: #F9F5FF;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
@@ -48,16 +44,18 @@ input {
     line-height: 24px;
     color: rgba(190, 192, 193, 0.5);
     padding: 10px 97px 10px 16px;
-    border: none; 
-    border-bottom: 2px solid #BEC0C1; 
+    border: none;
+    border-bottom: 2px solid #BEC0C1;
     outline: none;
 }
+
 input::placeholder {
-    color: rgba(190, 192, 193, 0.5); 
+    color: rgba(190, 192, 193, 0.5);
     font-family: 'Inter', sans-serif;
-    font-size: 16px; 
+    font-size: 16px;
     font-weight: 400;
 }
+
 .formBtnsContainer {
     display: flex;
     flex-direction: column;
@@ -65,13 +63,15 @@ input::placeholder {
     margin-bottom: 32px;
     position: relative;
 }
-.google{
+
+.google {
     width: 24px;
     height: 24px;
     position: absolute;
     bottom: 9px;
     left: 77px;
 }
+
 .toLink {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
@@ -90,13 +90,16 @@ input::placeholder {
 .formAddress {
     display: flex;
     justify-content: space-between;
+    margin-top: 45px;
 }
-.addressLinks{
+
+.addressLinks {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 16px;
 }
-.addressRight{
+
+.addressRight {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 16px;

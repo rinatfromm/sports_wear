@@ -3,25 +3,34 @@ import styles from './HeaderOther.module.css';
 import NavBar from '../header/navbar';
 import Button from '../../shared/ui/button';
 import LogoHeader from '../header/logo';
-import search from '../../shared/icons/search.svg'
+import SearchBar from '../header/searchBar';
+import { useAuth } from '../../shared/hooks/useAuth';
+import LoginModal from '../loginModal';
 
-function HeaderOther() {
+const HeaderOther: React.FC = () => {
+    const { isModalOpen, handleLoginClick, handleCloseModal } = useAuth();
+
+
     return (
         <header className={styles.header} >
             <div className={styles.headerContainer}>
                 <div className={styles.navbar}>
                     <LogoHeader />
-                    <NavBar containerClass="navBar" />
+                    <NavBar
+                        containerClass="navBar"
+                        linkClass="link"
+                        navItemClass="navItem"
+                        activeLinkClass="activeLink"
+                        arrowBottomClass="arrowHeader"
+                    />
                 </div>
                 <div className={styles.btnsContainer}>
-                    <div className={styles.inputWrapper}>
-                        <input type="text" className={styles.search} placeholder="Search" />
-                        <img src={search} alt="Search Icon" className={styles.icon} />
-                    </div>
+                    <SearchBar />
                     <BasketLogo />
-                    <Button className={'btns'} title={'Log in'} />
+                    <Button className={'btns'} title={'Log in'} onClick={handleLoginClick}/>
                 </div>
             </div>
+            {isModalOpen && <LoginModal onClose={handleCloseModal} />}
         </header>
     );
 }

@@ -3,7 +3,8 @@ import ProductList from '../../entities/Products/ui/productsList';
 import Billboard from '../../widgets/billboard';
 import FeaturesSection from '../../widgets/featuresSection';
 import OurPartners from '../../widgets/ourPartnersSection';
-import ProbeCards from '../../widgets/probeCards';
+import ProductCards from '../../widgets/productCards';
+
 
 
 const MainPage: React.FC = () => {
@@ -12,7 +13,7 @@ const MainPage: React.FC = () => {
             <Billboard />
             <FeaturesSection />
             <ProductList />
-            <ProbeCards></ProbeCards>
+            <ProductCards></ProductCards>
             <OurPartners />
         </div>
     );
