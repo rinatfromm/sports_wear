@@ -7,6 +7,7 @@ import spor from '../../shared/ assets/  images/SPOR.svg'
 import tego from '../../shared/ assets/  images/TEGO.svg'
 import Button from '../../shared/ui/button';
 import icon from '../../shared/icons/play-circle.svg'
+import { NavLink } from 'react-router-dom';
 
 function Billboard() {
     return (
@@ -27,7 +28,9 @@ function Billboard() {
                     <Button className={"whatch_our_promo"} title={'Whatch our promo'}>
                         <img src={icon} alt="icon" className={styles.icon_whatch_our_promo} />
                     </Button>
-                    <Button className={"go_to_shopping"} title={'Go to shopping'}></Button>
+                    <NavLink to="/allProducts" className={"go_to_shopping_btn"}>
+                        <Button className={"go_to_shopping"} title={'Go to shopping'}></Button>
+                    </NavLink>
                 </div>
             </div>
         </section>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { products } from './products';
 import styles from './ProductSelect.module.css';
-// import arrow_bottom from '../../shared/icons/arrow-bottom.svg'
+
 
 interface ProductSelectProps {
     onSelect: (productId: number) => void;
