@@ -52,9 +52,12 @@
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: #603CB0;
+    color: #7F56D9;
 }
 
+.seeAllProducts:hover {
+    color: #603CB0;
+}
 .arrowAllProducts {
     width: 14px;
     height: 12px;
