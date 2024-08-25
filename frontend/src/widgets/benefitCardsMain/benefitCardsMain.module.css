@@ -1,0 +1,65 @@
+.benefitCardsMainContainer {
+    position: relative;
+}
+
+.benefitContent {
+    max-width: 1280px;
+    margin: 0px auto;
+}
+
+.benefitTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #603CB0;
+    margin-bottom: 12px;
+}
+
+.highlight {
+    color: #7F56D9;
+}
+
+.benefitSlogan {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+}
+
+.benefitText {
+    width: 740px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #344054;
+    margin-bottom: 24px;
+}
+
+.callOut {
+    position: absolute;
+    z-index: 1;
+    left: 350px;
+    top: 330px;
+}
+
+.seeAllProducts {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #7F56D9;
+}
+
+.seeAllProducts:hover {
+    color: #603CB0;
+}
+.arrowAllProducts {
+    width: 14px;
+    height: 12px;
+    background-image: url('../../shared/icons/arrowAllProducts.svg')
+}
