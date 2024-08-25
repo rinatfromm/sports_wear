@@ -1,24 +1,33 @@
 package com.sportswear.sportswear.dto;
 
-import com.sportswear.sportswear.entity.PersonalInfo;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
 public class ClientDTO {
-    private UUID id;
+    @NotNull(message = "Name should not be null!")
+    private String name;
 
-    @NotNull(message = "Personal info should not be null!")
-    private PersonalInfo personalInfo;
+    @NotNull(message = "Last name should not be null!")
+    private String lastName;
 
-    @NotNull(message = "Active should not be null!")
-    @AssertTrue(message = "Active is wrong!")
-    private boolean active;
+    private String middleName;
 
-    private LocalDateTime created;
+    @NotNull(message = "Last name should not be null!")
+    private String phone;
 
-    private LocalDateTime updated;
+    @NotNull(message = "Last name should not be null!")
+    @Email(message = "Wrong email format!")
+    private String email;
+
+    @Past(message = "Birth date could not be in future!")
+    private LocalDateTime birthDate;
+
+    private List<UUID> deliveryAddresses;
+
+    private List<UUID> orders;
 }

@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.MERGE;
+import static jakarta.persistence.CascadeType.REFRESH;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -14,15 +17,11 @@ import java.util.UUID;
 @Table(name = "images")
 public class Image {
     @Id
-    //@GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "item_id")
-//    private Item itemId;
-
-    //@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private UUID itemId;
+    @ManyToOne(cascade = {MERGE, REFRESH})
+    @JoinColumn(name = "items_id", referencedColumnName = "id")
+    private Item itemId;
 }

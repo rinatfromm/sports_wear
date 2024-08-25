@@ -66,7 +66,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public ItemDTO updateItemById(ItemDTO itemDTO) {
         if (!itemRepository.existsById(itemDTO.getId())) {
-            new NoSuchElementException("Could not update non existing item!");
+            throw new NoSuchElementException("Could not update non existing item!");
         }
         Item item = itemRepository.save(itemDTOConverter.convertDTOToItem(itemDTO));
         log.info("Update item by id.");
@@ -76,7 +76,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public String deleteItemById(UUID id) {
         if (!itemRepository.existsById(id)) {
-            new NoSuchElementException("Could not delete non existing item!");
+            throw new NoSuchElementException("Could not delete non existing item!");
         }
         itemRepository.deleteById(id);
         return "Item deleted! id " + id;

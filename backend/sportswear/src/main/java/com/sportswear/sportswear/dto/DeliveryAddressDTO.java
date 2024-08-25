@@ -1,20 +1,15 @@
 package com.sportswear.sportswear.dto;
 
-import com.sportswear.sportswear.entity.Client;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
 public class DeliveryAddressDTO {
     private UUID id;
-
-    @NotNull(message = "Client should not be null!")
-    private Client client;
 
     @NotNull(message = "Country should not be null!")
     @NotBlank(message = "Country should not be empty!")
@@ -42,7 +37,6 @@ public class DeliveryAddressDTO {
     @AssertTrue(message = "Active is wrong!")
     private Boolean active;
 
-    private LocalDateTime created;
-
-    private  LocalDateTime updated;
+    @NotNull(message = "Client id should not be null!")
+    private UUID client;
 }

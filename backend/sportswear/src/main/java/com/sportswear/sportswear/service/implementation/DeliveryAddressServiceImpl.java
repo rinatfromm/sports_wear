@@ -6,12 +6,9 @@ import com.sportswear.sportswear.entity.DeliveryAddress;
 import com.sportswear.sportswear.repository.DeliveryAddressRepository;
 import com.sportswear.sportswear.service.interfaces.DeliveryAddressService;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -53,9 +50,9 @@ public class DeliveryAddressServiceImpl implements DeliveryAddressService {
     @Override
     @Transactional
     public DeliveryAddressDTO updateDeliveryAddress(DeliveryAddressDTO deliveryAddressDTO) {
-        if (!deliveryAddressRepository.existsById(deliveryAddressDTO.getId())) {
-            new NoSuchElementException("COuld not update non existing delivery address!");
-        }
+//        if (!deliveryAddressRepository.existsById(deliveryAddressDTO.getId())) {
+//            throw new NoSuchElementException("Could not update non existing delivery address!");
+//        }
         DeliveryAddress deliveryAddress = deliveryAddressRepository
                 .save(deliveryAddressDTOConverter.convertDTOToDeliveryAddress(deliveryAddressDTO));
         log.info("Update delivery address.");
@@ -66,8 +63,9 @@ public class DeliveryAddressServiceImpl implements DeliveryAddressService {
     @Transactional
     public String deleteDeliveryAddressById(UUID id) {
         if (!deliveryAddressRepository.existsById(id)) {
-            new NoSuchElementException("Could not delete non existing delivery address! id " + id);
+            throw new NoSuchElementException("Could not delete non existing delivery address! id " + id);
         }
+        deliveryAddressRepository.deleteById(id);
         return "Delivery address deleted! id " + id;
     }
 }

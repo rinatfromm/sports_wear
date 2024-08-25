@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.MERGE;
+import static jakarta.persistence.CascadeType.REFRESH;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -18,8 +21,13 @@ public class OrderItem {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "order_id")
-    private UUID orderId;
+    @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
+    @JoinColumn(name = "orders_id", referencedColumnName = "id")
+    private Order order;
+
+    @OneToOne(cascade = {MERGE, REFRESH}, orphanRemoval = true)
+    @JoinColumn(name = "items_id", referencedColumnName = "id")
+    private Item item;
 
     @Column(name = "item_id")
     private Integer quantity;

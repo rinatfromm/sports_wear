@@ -9,7 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -43,9 +42,6 @@ public class Item {
 
     @Column(name = "in_stock", nullable = false)
     private Integer inStock;
-
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Image> images;
 
     @CreationTimestamp
     @Column(name = "created", updatable = false)

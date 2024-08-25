@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public OrderDTO updateOrder(OrderDTO orderDTO) {
         if (!orderRepository.existsById(orderDTO.getId())) {
-            new NoSuchElementException("Could not update non existing order!");
+            throw new NoSuchElementException("Could not update non existing order!");
         }
         Order order = orderRepository.save(orderDTOConverter.convertDTOToOrder(orderDTO));
         log.info("Update order.");
@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public String deleteOrderById(UUID id) {
         if (!orderRepository.existsById(id)) {
-            new NoSuchElementException("Could not delete non existing order item! id " + id);
+            throw new NoSuchElementException("Could not delete non existing order item! id " + id);
         }
         orderRepository.deleteById(id);
         return "Order deleted! id " + id;

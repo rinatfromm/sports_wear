@@ -45,7 +45,7 @@ public class ImageServiceImpl implements ImageService {
         String imageUrl = imagePath + imageName;
         Image dbImage = new Image();
         dbImage.setId(imageId);
-        dbImage.setItemId(id);
+        //dbImage.setItemId(id);
         Image image = imageRepository.save(dbImage);
         Files.write(Paths.get(imageUrl), imageFile.getBytes());
         log.info("Upload image. id " + id);
@@ -81,7 +81,8 @@ public class ImageServiceImpl implements ImageService {
     @Override
     @Transactional
     public List<ImageDTO> getAllImagesByItemId(UUID id) {
-        return imageDTOConverter.convertImagesToDTOs(imageRepository.getAllByItemId(id));
+//        return imageDTOConverter.convertImagesToDTOs(imageRepository.getAllByItemId(id));
+        return null;
     }
 
     @Override
@@ -95,7 +96,7 @@ public class ImageServiceImpl implements ImageService {
     @Transactional
     public ImageDTO updateImage(ImageDTO imageDTO) {
         if (!imageRepository.existsById(imageDTO.getId())) {
-            new NoSuchElementException("Could not update non existing order!");
+            throw new NoSuchElementException("Could not update non existing order!");
         }
         Image image = imageRepository.save(imageDTOConverter.convertDTOToImage(imageDTO));
         log.info("Update image.");

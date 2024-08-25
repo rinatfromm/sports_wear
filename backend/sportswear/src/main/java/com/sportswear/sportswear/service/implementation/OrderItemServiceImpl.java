@@ -35,7 +35,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public OrderItemDTO updateOrderItemById(OrderItemDTO orderItemDTO) {
         if (!orderItemRepository.existsById(orderItemDTO.getId())) {
-            new NoSuchElementException("Could not update non existing order item!");
+            throw new NoSuchElementException("Could not update non existing order item!");
         }
         OrderItem orderItem = orderItemRepository.save(orderItemDTOConverter.convertDTOToOrderItem(orderItemDTO));
         return orderItemDTOConverter.convertOrderItemToDTO(orderItem);
@@ -44,7 +44,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public String deleteOrderItemById(UUID id) {
         if (!orderItemRepository.existsById(id)) {
-            new NoSuchElementException("Could not delete non existing order item!");
+            throw new NoSuchElementException("Could not delete non existing order item!");
         }
         orderItemRepository.deleteById(id);
         return "Order item deleted!";

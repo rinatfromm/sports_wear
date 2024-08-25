@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface ImageRepository extends JpaRepository<Image, UUID> {
     Image findAllById(UUID id);
 
-    @Query("SELECT im FROM Image im " +
-            "WHERE im.itemId = :id ")
-    List<Image> getAllByItemId(UUID id);
+//    @Query("SELECT im FROM Image im " +
+//            "WHERE im.itemId = :id ")
+//    List<Image> getAllByItemId(UUID id);
 }
