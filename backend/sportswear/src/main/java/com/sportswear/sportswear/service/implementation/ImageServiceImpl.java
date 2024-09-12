@@ -4,6 +4,7 @@ import com.sportswear.sportswear.converter.ImageDTOConverter;
 import com.sportswear.sportswear.dto.ImageDTO;
 import com.sportswear.sportswear.entity.Image;
 import com.sportswear.sportswear.repository.ImageRepository;
+import com.sportswear.sportswear.repository.ItemRepository;
 import com.sportswear.sportswear.service.interfaces.ImageService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ import java.util.UUID;
 public class ImageServiceImpl implements ImageService {
     private final ImageRepository imageRepository;
     private final ImageDTOConverter imageDTOConverter;
+    private final ItemRepository itemRepository;
 
     @Value(value = "${image.path}")
     private String imagePath;
@@ -40,12 +42,14 @@ public class ImageServiceImpl implements ImageService {
     @Override
     @Transactional
     public ImageDTO uploadImage(UUID id, MultipartFile imageFile) throws IOException {
+//        Item item = itemRepository.findById(id)
+//                .orElseThrow(() -> new NoSuchElementException("Item not found!"));
         UUID imageId = UUID.randomUUID();
         String imageName = imageId + imageType;
         String imageUrl = imagePath + imageName;
         Image dbImage = new Image();
         dbImage.setId(imageId);
-        //dbImage.setItemId(id);
+        dbImage.setItemId(id);
         Image image = imageRepository.save(dbImage);
         Files.write(Paths.get(imageUrl), imageFile.getBytes());
         log.info("Upload image. id " + id);

@@ -9,6 +9,6 @@ import java.util.UUID;
 public class ImageDTO {
     private UUID id;
 
-    @NotNull(message = "Image URL should not be null!")
-    private String imageURL;
+    @NotNull(message = "Item id should not be null!")
+    private UUID item;
 }

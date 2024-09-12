@@ -13,6 +13,9 @@ public class OrderItemDTO {
     @NotNull(message = "Order Id should not be null!")
     private UUID orderId;
 
+    @NotNull(message = "Item should not be null!")
+    private UUID itemId;
+
     @NotNull(message = "Quantity should not be null!")
     @Min(value = 0, message = "Quantity should not be less zen zero!")
     private Integer quantity;

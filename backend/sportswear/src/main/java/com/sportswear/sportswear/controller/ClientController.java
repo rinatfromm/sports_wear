@@ -1,9 +1,9 @@
 package com.sportswear.sportswear.controller;
 
-import com.sportswear.sportswear.dto.ClientDTO;
-import com.sportswear.sportswear.dto.ClientGetDTO;
-import com.sportswear.sportswear.dto.DeliveryAddressDTO;
+import com.sportswear.sportswear.dto.*;
+import com.sportswear.sportswear.entity.Order;
 import com.sportswear.sportswear.service.interfaces.ClientService;
+import com.sportswear.sportswear.service.interfaces.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,15 +37,43 @@ public class ClientController {
         return ResponseEntity.ok().body("Delivery address deleted! From client id " + id);
     }
 
+    @PostMapping(value = "/add/order")
+    public ResponseEntity<String> addOrder(@RequestBody @Valid OrderDTO orderDTO) {
+        clientService.addOrder(orderDTO);
+        return ResponseEntity.ok().body("Order added! To client id " + orderDTO.getClient());
+    }
+
+    @DeleteMapping(value = "/delete/order/by/id/{id}")
+    public ResponseEntity<String> deleteOrder(@PathVariable @Valid UUID id) {
+        clientService.deleteOrder(id);
+        return ResponseEntity.ok().body("Order deleted! From client id " + id);
+    }
+
+    @PostMapping(value = "/add/item/to/order")
+    public ResponseEntity<String> addOrderItem(@RequestBody @Valid OrderItemDTO orderItemDTO) {
+        clientService.addItemToOrder(orderItemDTO);
+        return ResponseEntity.ok().body("Added item. id " + orderItemDTO.getItemId() + " to order with id " + orderItemDTO.getOrderId());
+    }
+
+    @DeleteMapping(value = "/delete/item/from/order/by/id/{id}")
+    public ResponseEntity<String> deleteItemFromOrder(@PathVariable @Valid UUID id) {
+        clientService.deleteItemFromOrder(id);
+        return ResponseEntity.ok().body("Delete item with id " + id);
+    }
+
     @GetMapping(value = "/get/by/id/{id}")
     public ResponseEntity<ClientGetDTO> getClientById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(clientService.getClientById(id));
     }
 
-
     @GetMapping(value = "/get/all")
     public ResponseEntity<List<ClientGetDTO>> getAllClients() {
         return ResponseEntity.ok().body(clientService.getAllClients());
+    }
+
+    @GetMapping(value = "/get/all/orders")
+    public ResponseEntity<List<OrderGetDTO>> getAllOrders() {
+        return ResponseEntity.ok().body(clientService.getAllOrders());
     }
 
     @PutMapping(value = "/update")
@@ -56,5 +84,14 @@ public class ClientController {
     @DeleteMapping(value = "/delete/by/id{id}")
     public ResponseEntity<String> deleteClientById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(clientService.deleteClientById(id));
+    }
+
+    // Debug
+    private final OrderService orderService;
+
+    @GetMapping(value = "/test/get/list/of/order-items")
+    public ResponseEntity<List<OrderGetDTO>> testGetOrders() {
+        List<OrderGetDTO> orders = orderService.getAllOrders();
+        return ResponseEntity.ok().body(orders);
     }
 }

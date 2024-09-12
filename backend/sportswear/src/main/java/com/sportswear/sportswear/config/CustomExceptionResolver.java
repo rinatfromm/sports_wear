@@ -17,13 +17,15 @@ public class CustomExceptionResolver extends AbstractHandlerExceptionResolver {
                                               Object handler,
                                               Exception ex) {
         final ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
+        modelAndView.addObject("message", "Not found exception");
+        modelAndView.addObject("error", ex.getMessage());
+        modelAndView.addObject("loc error", ex.getLocalizedMessage());
+
         if (ex instanceof ChangeSetPersister.NotFoundException) {
             modelAndView.setStatus(HttpStatus.NOT_FOUND);
-            modelAndView.addObject("message", "Not found exception");
             return modelAndView;
         }
         modelAndView.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-        modelAndView.addObject("message", "Not found exception");
         return modelAndView;
     }
 }

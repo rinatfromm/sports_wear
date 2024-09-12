@@ -2,14 +2,15 @@ package com.sportswear.sportswear.service.implementation;
 
 import com.sportswear.sportswear.converter.ClientDTOConverter;
 import com.sportswear.sportswear.converter.DeliveryAddressDTOConverter;
-import com.sportswear.sportswear.dto.ClientDTO;
-import com.sportswear.sportswear.dto.ClientGetDTO;
-import com.sportswear.sportswear.dto.DeliveryAddressDTO;
-import com.sportswear.sportswear.entity.Client;
-import com.sportswear.sportswear.entity.DeliveryAddress;
-import com.sportswear.sportswear.repository.ClientRepository;
-import com.sportswear.sportswear.repository.DeliveryAddressRepository;
+import com.sportswear.sportswear.converter.OrderDTOConverter;
+import com.sportswear.sportswear.converter.OrderItemDTOConverter;
+import com.sportswear.sportswear.dto.*;
+import com.sportswear.sportswear.entity.*;
+import com.sportswear.sportswear.repository.*;
 import com.sportswear.sportswear.service.interfaces.ClientService;
+import com.sportswear.sportswear.service.interfaces.ItemService;
+import com.sportswear.sportswear.service.interfaces.OrderItemService;
+import com.sportswear.sportswear.service.interfaces.OrderService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,12 @@ public class ClientServiceImpl implements ClientService {
     private final ClientDTOConverter clientDTOConverter;
     private final DeliveryAddressRepository deliveryAddressRepository;
     private final DeliveryAddressDTOConverter deliveryAddressDTOConverter;
+    private final OrderDTOConverter orderDTOConverter;
+    private final OrderRepository orderRepository;
+    private final OrderService orderService;
+    private final OrderItemService orderItemService;
+    private final OrderItemDTOConverter orderItemDTOConverter;
+    private final ItemRepository itemRepository;
 
     @Override
     @Transactional
@@ -51,10 +58,56 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public void deleteDeliveryAddress(UUID id) {
-        if(!deliveryAddressRepository.existsById(id)) {
+        if (!deliveryAddressRepository.existsById(id)) {
             throw new NoSuchElementException("Delivery address does not exist!");
         }
         deliveryAddressRepository.deleteById(id);
+    }
+
+    @Override
+    public void addOrder(OrderDTO orderDTO) {
+        Client client = clientRepository.findById(orderDTO.getClient()).orElseThrow(
+                () -> new NoSuchElementException("Client does not exist!"));
+        Order newOrder = orderDTOConverter.convertDTOToOrder(orderDTO);
+        newOrder.setClient(client);
+        newOrder = orderRepository.save(newOrder);
+        client.getOrders().add(newOrder);
+        clientRepository.save(client);
+    }
+
+    @Override
+    public void deleteOrder(UUID id) {
+        if (!orderRepository.existsById(id)) {
+            throw new NoSuchElementException("Order does not exist!");
+        }
+        orderRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void addItemToOrder(OrderItemDTO orderItemDTO) {
+        Order order = orderRepository.findById(orderItemDTO.getOrderId()).orElseThrow(
+                () -> new NoSuchElementException("Order does not exist!")
+        );
+        Item item = itemRepository.findById(orderItemDTO.getItemId()).orElseThrow(
+                () -> new NoSuchElementException("Item does not exist!")
+        );
+
+        OrderItem newOrderItem = new OrderItem();
+        newOrderItem.setOrder(order);
+        newOrderItem.setItem(item);
+        newOrderItem.setQuantity(orderItemDTO.getQuantity());
+
+        newOrderItem = orderItemService.createOrderItem(newOrderItem);
+        order.getOrderItems().add(newOrderItem);
+        orderRepository.save(order);
+        log.info("Add item id : " + orderItemDTO.getItemId() + " to order id : " + orderItemDTO.getOrderId());
+    }
+
+    @Override
+    @Transactional
+    public void deleteItemFromOrder(UUID id) {
+        orderItemService.deleteOrderItemById(id);
     }
 
     @Override
@@ -71,6 +124,12 @@ public class ClientServiceImpl implements ClientService {
         List<Client> clients = clientRepository.findAll();
         log.info("Get all clients.");
         return clientDTOConverter.convertClientsToGetDTOs(clients);
+    }
+
+    @Override
+    public List<OrderGetDTO> getAllOrders() {
+        log.info("Get all orders.");
+        return orderService.getAllOrders();
     }
 
     @Override

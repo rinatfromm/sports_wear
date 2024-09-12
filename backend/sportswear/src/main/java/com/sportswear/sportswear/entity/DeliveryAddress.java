@@ -11,6 +11,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.*;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -51,7 +53,7 @@ public class DeliveryAddress {
     @Column(name = "updated")
     private LocalDateTime updated;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST} )
+    @ManyToOne(cascade = {MERGE, REFRESH, DETACH, PERSIST})
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     @JsonBackReference
     private Client client;

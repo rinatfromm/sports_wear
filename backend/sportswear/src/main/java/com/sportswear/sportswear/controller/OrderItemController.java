@@ -31,7 +31,7 @@ public class OrderItemController {
     }
 
     @DeleteMapping(value = "/delete/by/id/{id}")
-    public ResponseEntity<String> deleteOrderItemById(@PathVariable @ Valid UUID id) {
+    public ResponseEntity<String> deleteOrderItemById(@PathVariable @Valid UUID id) {
         return ResponseEntity.ok().body(orderItemService.deleteOrderItemById(id));
     }
 }

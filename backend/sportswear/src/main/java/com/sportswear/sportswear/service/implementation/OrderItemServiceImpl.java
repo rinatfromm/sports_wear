@@ -26,6 +26,11 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
+    public OrderItem createOrderItem(OrderItem orderItem) {
+        return orderItemRepository.save(orderItem);
+    }
+
+    @Override
     public OrderItemDTO getOrderItemByOrderId(UUID id) {
         OrderItem orderItem = orderItemRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Order item does not exist!"));

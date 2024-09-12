@@ -1,6 +1,7 @@
 package com.sportswear.sportswear.converter;
 
 import com.sportswear.sportswear.dto.OrderDTO;
+import com.sportswear.sportswear.dto.OrderGetDTO;
 import com.sportswear.sportswear.entity.Order;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -26,6 +27,14 @@ public class OrderDTOConverter {
         List<OrderDTO> orderDTOs = new LinkedList<>();
         for (Order order : orders) {
             orderDTOs.add(modelMapper.map(order, OrderDTO.class));
+        }
+        return orderDTOs;
+    }
+
+    public List<OrderGetDTO> convertOrdersToGetDTOs(List<Order> orders) {
+        List<OrderGetDTO> orderDTOs = new LinkedList<>();
+        for (Order order : orders) {
+            orderDTOs.add(modelMapper.map(order, OrderGetDTO.class));
         }
         return orderDTOs;
     }

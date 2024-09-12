@@ -28,8 +28,10 @@ public class ImageController {
     private final ImageService imageService;
 
     @PostMapping(value = "/upload/by/item/id/{itemId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void uploadImage(@PathVariable @Valid UUID itemId, @RequestParam("file") MultipartFile image) throws IOException {
+    public ResponseEntity<String> uploadImage(@PathVariable @Valid UUID itemId,
+                                              @RequestParam("file") MultipartFile image) throws IOException {
         imageService.uploadImage(itemId, image);
+        return ResponseEntity.ok().body("Image uploaded! id : " + itemId);
     }
 
     @GetMapping(value = "/download/by/id/{id}")

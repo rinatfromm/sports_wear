@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ImageService {
-    ImageDTO uploadImage(UUID id, MultipartFile image) throws IOException;
+    ImageDTO uploadImage(UUID itemId, MultipartFile image) throws IOException;
     Resource downloadImage(UUID imageId) throws IOException;
     ImageDTO getImageById(UUID id);
     List<ImageDTO> getAllImagesByItemId(UUID id);
