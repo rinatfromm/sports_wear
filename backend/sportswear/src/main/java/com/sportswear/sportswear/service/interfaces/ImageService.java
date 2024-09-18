@@ -11,6 +11,7 @@ import java.util.UUID;
 public interface ImageService {
     ImageDTO uploadImage(UUID itemId, MultipartFile image) throws IOException;
     Resource downloadImage(UUID imageId) throws IOException;
+    String downloadImageTest(UUID imageId);
     ImageDTO getImageById(UUID id);
     List<ImageDTO> getAllImagesByItemId(UUID id);
     List<ImageDTO> getAllImages();

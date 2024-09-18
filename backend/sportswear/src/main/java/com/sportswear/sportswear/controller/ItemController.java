@@ -2,6 +2,8 @@ package com.sportswear.sportswear.controller;
 
 import com.sportswear.sportswear.dto.ImageDTO;
 import com.sportswear.sportswear.dto.ItemDTO;
+import com.sportswear.sportswear.dto.ItemGetDTO;
+import com.sportswear.sportswear.dto.ItemGroupedDTO;
 import com.sportswear.sportswear.service.interfaces.ItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -44,8 +46,13 @@ public class ItemController {
     }
 
     @PostMapping(value = "/get/all")
-    public ResponseEntity<List<ItemDTO>> getAllItems() {
+    public ResponseEntity<List<ItemGetDTO>> getAllItems() {
         return ResponseEntity.ok().body(itemService.getAllItems());
+    }
+
+    @PostMapping(value = "/get/grouped/item")
+    public ResponseEntity<ItemGroupedDTO> getAllGroupedItems() {
+        return ResponseEntity.ok().body(itemService.getGroupedItem());
     }
 
     @PutMapping(value = "/update")

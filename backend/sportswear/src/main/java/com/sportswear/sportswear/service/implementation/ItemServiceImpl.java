@@ -2,7 +2,7 @@ package com.sportswear.sportswear.service.implementation;
 
 import com.sportswear.sportswear.converter.ImageDTOConverter;
 import com.sportswear.sportswear.converter.ItemDTOConverter;
-import com.sportswear.sportswear.dto.ItemDTO;
+import com.sportswear.sportswear.dto.*;
 import com.sportswear.sportswear.entity.Image;
 import com.sportswear.sportswear.entity.Item;
 import com.sportswear.sportswear.repository.ImageRepository;
@@ -17,8 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -58,10 +57,45 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     @Transactional
-    public List<ItemDTO> getAllItems() {
+    public List<ItemGetDTO> getAllItems() {
+        // Get all items
         List<Item> items = itemRepository.findAll();
+
+        // Convert all item entities to get item DTOs
+        List<ItemGetDTO> itemsDTO = itemDTOConverter.convertItemsToGetDTOs(items);
+
+        // Convert all items images to imageURLs
+        imageToURL(items, itemsDTO);
+
         log.info("Get all items.");
-        return itemDTOConverter.convertItemsToDTOs(items);
+        return itemsDTO;
+    }
+
+    @Override
+    public ItemGroupedDTO getGroupedItem() {
+        // Test name
+        String name = "t-sprin";
+
+        // Get list of all items with the same name
+        List<Item> items = itemRepository.findAllByName(name);
+
+        // Return null if list is less than 2 elements!
+        if (items.size() < 1) {
+            return null;
+        }
+
+        // Convert all items to grouped items except imageURLs and colorSizeDTOs
+        List<ItemGroupedDTO> groupedDTOs = itemDTOConverter.convertItemsToGroupedDTOs(items);
+
+        // Convert images to imageURLs and add it to DTOs
+        imageToGroupedURL(items, groupedDTOs);
+
+        // Result item with all sizes
+        ItemGroupedDTO itemGrouped = groupedDTOs.get(0);
+
+        itemGrouped.setColorDTOs(getAllColorDTOs(items, itemGrouped.getName()));
+
+        return itemGrouped;
     }
 
     @Override
@@ -117,5 +151,74 @@ public class ItemServiceImpl implements ItemService {
         }
         itemRepository.deleteById(id);
         return "Item deleted! id " + id;
+    }
+
+    private String buildImageURL(UUID id) {
+//        return imagePath + id + imageType;
+        return imageService.downloadImageTest(id);
+    }
+
+    private void imageToURL(List<Item> items, List<ItemGetDTO> itemsDTO) {
+        // Convert every image in item to image URLs
+        for (int index = 0; index < items.size(); index++) {
+            List<Image> images = items.get(index).getImages();
+            List<String> imageURLs = new LinkedList<>();
+
+            // Convert image id to full image path
+            for (Image image : images) {
+                imageURLs.add(buildImageURL(image.getId()));
+            }
+
+            // Set image URLs to item
+            itemsDTO.get(index).setImageURLs(imageURLs);
+        }
+    }
+
+    private void imageToGroupedURL(List<Item> items, List<ItemGroupedDTO> itemsDTO) {
+        // Convert every image in item to image URLs
+        for (int index = 0; index < items.size(); index++) {
+            List<Image> images = items.get(index).getImages();
+            List<String> imageURLs = new LinkedList<>();
+
+            // Convert image id to full image path
+            for (Image image : images) {
+                imageURLs.add(buildImageURL(image.getId()));
+            }
+
+            // Set image URLs to item
+            itemsDTO.get(index).setImageURLs(imageURLs);
+        }
+    }
+
+    private List<ColorDTO> getAllColorDTOs(List<Item> items, String name) {
+        List<ColorDTO> colorDTOs = new LinkedList<>();
+        List<UUID> usedItems = new LinkedList<>();
+
+        for (int index = 0; index < items.size(); index++) {
+            if (name.equals(items.get(index).getName()) &&
+                !usedItems.contains(items.get(index).getId())) {
+                ColorDTO colorDTO = new ColorDTO();
+                colorDTO.setColor(items.get(index).getColor());
+                colorDTO.setSizeDTOs(getAllSizeDTOs(items, usedItems, items.get(index).getColor()));
+                colorDTOs.add(colorDTO);
+            }
+        }
+        return colorDTOs;
+    }
+
+    private List<SizeDTO> getAllSizeDTOs(List<Item> items, List<UUID> usedItems, String color) {
+        List<SizeDTO> sizeDTOs = new LinkedList<>();
+
+        for (int index = 0; index < items.size(); index++) {
+            if (color.equals(items.get(index).getColor()) &&
+                !usedItems.contains(items.get(index).getId())) {
+                SizeDTO size = new SizeDTO();
+                size.setSize(items.get(index).getSize());
+                size.setItemId(items.get(index).getId());
+                usedItems.add(items.get(index).getId());
+                sizeDTOs.add(size);
+            }
+        }
+        return sizeDTOs;
     }
 }
