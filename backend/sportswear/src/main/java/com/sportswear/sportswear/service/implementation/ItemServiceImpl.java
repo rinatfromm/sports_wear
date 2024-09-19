@@ -72,9 +72,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional
     public ItemGroupedDTO getGroupedItem() {
         // Test name
-        String name = "t-sprin";
+//        String name = "t-sprin";
+        String name = "Jeans Lossy";
 
         // Get list of all items with the same name
         List<Item> items = itemRepository.findAllByName(name);
@@ -196,7 +198,7 @@ public class ItemServiceImpl implements ItemService {
 
         for (int index = 0; index < items.size(); index++) {
             if (name.equals(items.get(index).getName()) &&
-                !usedItems.contains(items.get(index).getId())) {
+                    !usedItems.contains(items.get(index).getId())) {
                 ColorDTO colorDTO = new ColorDTO();
                 colorDTO.setColor(items.get(index).getColor());
                 colorDTO.setSizeDTOs(getAllSizeDTOs(items, usedItems, items.get(index).getColor()));
@@ -211,7 +213,7 @@ public class ItemServiceImpl implements ItemService {
 
         for (int index = 0; index < items.size(); index++) {
             if (color.equals(items.get(index).getColor()) &&
-                !usedItems.contains(items.get(index).getId())) {
+                    !usedItems.contains(items.get(index).getId())) {
                 SizeDTO size = new SizeDTO();
                 size.setSize(items.get(index).getSize());
                 size.setItemId(items.get(index).getId());
@@ -221,4 +223,5 @@ public class ItemServiceImpl implements ItemService {
         }
         return sizeDTOs;
     }
+
 }

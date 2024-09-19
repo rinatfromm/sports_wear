@@ -73,25 +73,14 @@ public class ImageServiceImpl implements ImageService {
         }
     }
 
-
-    // Test method
-    /*
-    @GetMapping("/{imageName}")
-    public String getImageUrl(@PathVariable String imageName) {
-        // Construct the image URL
-        String imageUrl = "http://localhost:" + serverPort + "/images/" + imageName;
-        return imageUrl;
-    }
-    */
-
     // Test
     @Value("${server.port}")
     private int serverPort;
 
     @Override
     public String downloadImageTest(UUID imageId) {
-//        return "http://localhost:" + serverPort + "/images/" + imageId + imageType;
-        return "http://localhost:" + serverPort + imagePath + imageId + imageType;
+        return "http://localhost:" + serverPort + "/images/" + imageId + imageType;
+//        return "http://localhost:" + serverPort + imagePath + imageId + imageType;
     }
 
     @Override
