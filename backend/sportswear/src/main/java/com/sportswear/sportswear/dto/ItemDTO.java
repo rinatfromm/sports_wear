@@ -1,6 +1,5 @@
 package com.sportswear.sportswear.dto;
 
-import com.sportswear.sportswear.entity.Image;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -43,9 +42,9 @@ public class ItemDTO {
     @Min(value = 0, message = "In stock should be greater than 0!")
     private Integer inStock;
 
+    private List<UUID> images;
+
     private LocalDateTime created;
 
     private LocalDateTime updated;
-
-    private List<Image> images;
 }

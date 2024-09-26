@@ -1,7 +1,6 @@
 package com.sportswear.sportswear.controller;
 
 import com.sportswear.sportswear.dto.*;
-import com.sportswear.sportswear.entity.Order;
 import com.sportswear.sportswear.service.interfaces.ClientService;
 import com.sportswear.sportswear.service.interfaces.OrderService;
 import jakarta.validation.Valid;
@@ -40,7 +39,7 @@ public class ClientController {
     @PostMapping(value = "/add/order")
     public ResponseEntity<String> addOrder(@RequestBody @Valid OrderDTO orderDTO) {
         clientService.addOrder(orderDTO);
-        return ResponseEntity.ok().body("Order added! To client id " + orderDTO.getClient());
+        return ResponseEntity.ok().body("Order added! To client id " + orderDTO.getClientId());
     }
 
     @DeleteMapping(value = "/delete/order/by/id/{id}")
@@ -63,7 +62,7 @@ public class ClientController {
 
     @GetMapping(value = "/get/by/id/{id}")
     public ResponseEntity<ClientGetDTO> getClientById(@PathVariable @Valid UUID id) {
-        return ResponseEntity.ok().body(clientService.getClientById(id));
+        return ResponseEntity.ok().body(clientService.getClientDTOById(id));
     }
 
     @GetMapping(value = "/get/all")

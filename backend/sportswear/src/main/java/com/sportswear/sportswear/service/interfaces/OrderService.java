@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface OrderService {
-    OrderDTO createOrder(OrderDTO orderDTO);
-    OrderDTO getOrderById(UUID id);
+    OrderGetDTO createOrder(UUID clientId);
+    OrderGetDTO getOrderById(UUID id);
     List<OrderGetDTO> getAllOrders();
     List<Order> getAllNormalOrders();
     OrderDTO updateOrder(OrderDTO orderDTO);

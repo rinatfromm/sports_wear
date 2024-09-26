@@ -10,9 +10,7 @@ import org.springframework.context.annotation.PropertySources;
 @SpringBootApplication
 @PropertySources({
 		//@PropertySource("classpath:constantparameters.properties"),
-		//@PropertySource("classpath:sportswear.properties"),
-		//@PropertySource("classpath:email.properties"),
-		//@PropertySource("file:/home/vlad/IdeaProjects/MailKey/emailslog.properties")
+		//@PropertySource("classpath:sportswear.properties")
 })
 public class SportswearApplication {
 

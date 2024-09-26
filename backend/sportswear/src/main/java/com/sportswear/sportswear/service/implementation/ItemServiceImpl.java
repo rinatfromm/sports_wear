@@ -76,7 +76,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemGroupedDTO getGroupedItem() {
         // Test name
 //        String name = "t-sprin";
-        String name = "Jeans Lossy";
+        String name = "Polo";
 
         // Get list of all items with the same name
         List<Item> items = itemRepository.findAllByName(name);

@@ -23,6 +23,10 @@ public class OrderDTOConverter {
         return modelMapper.map(order, OrderDTO.class);
     }
 
+    public OrderGetDTO convertOrderToGetDTO(Order order) {
+        return modelMapper.map(order, OrderGetDTO.class);
+    }
+
     public List<OrderDTO> convertOrdersToDTOs(List<Order> orders) {
         List<OrderDTO> orderDTOs = new LinkedList<>();
         for (Order order : orders) {

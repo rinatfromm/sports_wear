@@ -66,7 +66,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void addOrder(OrderDTO orderDTO) {
-        Client client = clientRepository.findById(orderDTO.getClient()).orElseThrow(
+        Client client = clientRepository.findById(orderDTO.getClientId()).orElseThrow(
                 () -> new NoSuchElementException("Client does not exist!"));
         Order newOrder = orderDTOConverter.convertDTOToOrder(orderDTO);
         newOrder.setClient(client);
@@ -112,10 +112,16 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public ClientGetDTO getClientById(UUID id) {
+    public ClientGetDTO getClientDTOById(UUID id) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Client not found with ID: " + id));
         return clientDTOConverter.convertClientToGetDTO(client);
+    }
+
+    @Override
+    public Client getClientById(UUID id) {
+        return clientRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Client not found with ID: " + id));
     }
 
     @Override

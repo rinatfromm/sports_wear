@@ -3,13 +3,15 @@ package com.sportswear.sportswear.service.implementation;
 import com.sportswear.sportswear.converter.OrderDTOConverter;
 import com.sportswear.sportswear.dto.OrderDTO;
 import com.sportswear.sportswear.dto.OrderGetDTO;
+import com.sportswear.sportswear.entity.Client;
 import com.sportswear.sportswear.entity.Order;
+import com.sportswear.sportswear.repository.ClientRepository;
 import com.sportswear.sportswear.repository.OrderRepository;
+import com.sportswear.sportswear.service.interfaces.ClientService;
 import com.sportswear.sportswear.service.interfaces.OrderService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,22 +24,33 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderDTOConverter orderDTOConverter;
+    private final ClientRepository clientRepository;
 
     @Override
     @Transactional
-    public OrderDTO createOrder(OrderDTO orderDTO) {
-        Order order = orderRepository.save(orderDTOConverter.convertDTOToOrder(orderDTO));
-        log.info("Create client.");
-        return orderDTOConverter.convertOrderToDTO(order);
+    public OrderGetDTO createOrder(UUID clientId) {
+        log.warn("Order DTO in service : " + clientId);
+        Client client = clientRepository.findById(clientId)
+                .orElseThrow(() -> new NoSuchElementException("Client does not exist!"));
+        Order order = new Order();
+        order.setClient(client);
+        log.warn(" order before client assignment : " + order);
+        order = orderRepository.save(order);
+//        client.getOrders().add(order);
+//        client = clientRepository.save(client);
+        log.warn(" order when client connected : " + order);
+//        log.warn("client: " + client.getOrders());
+        log.info("Create order. " + order);
+        return orderDTOConverter.convertOrderToGetDTO(order);
     }
 
     @Override
     @Transactional
-    public OrderDTO getOrderById(UUID id) {
+    public OrderGetDTO getOrderById(UUID id) {
         Order order = orderRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Order does not exist!"));
         log.info("Get order. id " + id);
-        return orderDTOConverter.convertOrderToDTO(order);
+        return orderDTOConverter.convertOrderToGetDTO(order);
     }
 
     @Override
@@ -60,6 +73,7 @@ public class OrderServiceImpl implements OrderService {
         if (!orderRepository.existsById(orderDTO.getId())) {
             throw new NoSuchElementException("Could not update non existing order!");
         }
+        log.info("order DTO : " + orderDTO);
         Order order = orderRepository.save(orderDTOConverter.convertDTOToOrder(orderDTO));
         log.info("Update order.");
         return orderDTOConverter.convertOrderToDTO(order);

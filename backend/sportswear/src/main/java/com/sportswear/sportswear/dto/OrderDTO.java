@@ -10,5 +10,5 @@ public class OrderDTO {
     private UUID id;
 
     @NotNull(message = "Client id should not be null!")
-    private UUID client;
+    private UUID clientId;
 }
