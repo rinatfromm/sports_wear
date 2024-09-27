@@ -3,6 +3,7 @@ package com.sportswear.sportswear.converter;
 import com.sportswear.sportswear.dto.ItemDTO;
 import com.sportswear.sportswear.dto.ItemGetDTO;
 import com.sportswear.sportswear.dto.ItemGroupedDTO;
+import com.sportswear.sportswear.dto.ItemVariantsDTO;
 import com.sportswear.sportswear.entity.Item;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -32,6 +33,10 @@ public class ItemDTOConverter {
         return modelMapper.map(item, ItemGroupedDTO.class);
     }
 
+    public ItemVariantsDTO convertItemToVariantsDTO(Item item) {
+        return modelMapper.map(item, ItemVariantsDTO.class);
+    }
+
     public List<ItemDTO> convertItemsToDTOs(List<Item> items) {
         List<ItemDTO> itemDTOs = new LinkedList<>();
         for (Item item : items) {
@@ -52,6 +57,14 @@ public class ItemDTOConverter {
         List<ItemGroupedDTO> itemDTOs = new LinkedList<>();
         for (Item item : items) {
             itemDTOs.add(modelMapper.map(item, ItemGroupedDTO.class));
+        }
+        return itemDTOs;
+    }
+
+    public List<ItemVariantsDTO> convertItemsToVariantsDTOs(List<Item> items) {
+        List<ItemVariantsDTO> itemDTOs = new LinkedList<>();
+        for (Item item : items) {
+            itemDTOs.add(modelMapper.map(item, ItemVariantsDTO.class));
         }
         return itemDTOs;
     }

@@ -101,6 +101,19 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public ItemVariantsDTO getVariantItems(String itemName) {
+        List<Item> items = itemRepository.findAllByName(itemName);
+        if (items == null || items.size() == 0) {
+            throw new NoSuchElementException("No items to show!");
+        }
+        log.warn("items by name quantity :" + items.size());
+        ItemVariantsDTO variant = itemDTOConverter.convertItemToVariantsDTO(items.get(0));
+
+        variant.setVariantsDTO(getAllVariantsDTOs(items));
+        return variant;
+    }
+
+    @Override
     @Transactional
     public void addImage(UUID itemId, MultipartFile imageFile) throws IOException {
         Item item = itemRepository.findById(itemId)
@@ -192,6 +205,14 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
+    private List<String> imagesToURLs(List<Image> images) {
+        List<String> imageURLs = new LinkedList<>();
+        for (int index = 0; index < images.size(); index++) {
+            imageURLs.add(buildImageURL(images.get(index).getId()));
+        }
+        return imageURLs;
+    }
+
     private List<ColorDTO> getAllColorDTOs(List<Item> items, String name) {
         List<ColorDTO> colorDTOs = new LinkedList<>();
         List<UUID> usedItems = new LinkedList<>();
@@ -224,4 +245,20 @@ public class ItemServiceImpl implements ItemService {
         return sizeDTOs;
     }
 
+    private List<VariantsDTO> getAllVariantsDTOs(List<Item> items) {
+        List<VariantsDTO> variants = new LinkedList<>();
+        for (int index = 0; index < items.size(); index++) {
+            Item curItem = items.get(index);
+            VariantsDTO variant = new VariantsDTO();
+            variant.setVariantId(curItem.getId());
+            variant.setSize(curItem.getSize());
+            variant.setColor(curItem.getColor());
+            variant.setPrice(curItem.getPrice());
+            variant.setQuantity(curItem.getInStock());
+            variant.setImageURLs(imagesToURLs(curItem.getImages()));
+
+            variants.add(variant);
+        }
+        return variants;
+    }
 }
